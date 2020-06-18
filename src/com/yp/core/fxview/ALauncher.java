@@ -114,6 +114,7 @@ public abstract class ALauncher extends Application {
 
 	protected void createDb() {
 		logger.log(Level.INFO, "Create database..");
+		System.setProperty("derby.system.home", BaseConstants.getRootAddress());
 	}
 
 	public void restore() {
@@ -242,13 +243,13 @@ public abstract class ALauncher extends Application {
 		closeAllForms();
 		Platform.exit();
 		System.exit(0);
-	}
-
-	protected abstract ResourceBundle getConfig();
+	}	
 
 	public abstract ResourceBundle getBundle();
 
 	public abstract String getStringConstant(String key);
+	
+	public abstract String getFormUrl(String key);
 
 	public String getApplicationId() {
 		return getStringConstant("Application.Id");

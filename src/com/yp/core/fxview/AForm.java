@@ -221,7 +221,7 @@ public abstract class AForm implements Initializable {
 		Pane dForm = app.getForm(fnId);
 		if (dForm == null && pUrl != null) {
 			try {
-				String dSayfa = app.getConfig().getString(pUrl);
+				String dSayfa = app.getFormUrl(pUrl);
 				dUrl = Root.class.getResource(dSayfa);
 				FXMLLoader fxmlLoader = new FXMLLoader(dUrl, pResources == null ? app.getBundle() : pResources);
 				dForm = fxmlLoader.load();
@@ -260,7 +260,7 @@ public abstract class AForm implements Initializable {
 		Pane dForm = app.getForm(fnId);
 		if (dForm == null && pUrl != null) {
 			try {
-				String dSayfa = app.getConfig().getString(pUrl);
+				String dSayfa = app.getFormUrl(pUrl);
 				dUrl = Root.class.getResource(dSayfa);
 				FXMLLoader fxmlLoader = new FXMLLoader(dUrl, app.getBundle());
 				dForm = fxmlLoader.load();
@@ -312,7 +312,7 @@ public abstract class AForm implements Initializable {
 		Parent root = null;
 		AForm aForm = null;
 		try {
-			String dSayfa = app.getConfig().getString(pUrl);
+			String dSayfa = app.getFormUrl(pUrl);
 			URL dUrl = Root.class.getResource(dSayfa);
 			FXMLLoader fxmlLoader = new FXMLLoader(dUrl, app.getBundle());
 			root = fxmlLoader.load();
@@ -330,12 +330,12 @@ public abstract class AForm implements Initializable {
 			stage.setTitle(pTitle);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.centerOnScreen();
-			if (aForm != null) {
-				aForm.dataEntity = pDataEntity;
-				aForm.list = pList;
-				aForm.refresh(null);
-				aForm.synchronize(true, null);
-			}
+
+			aForm.dataEntity = pDataEntity;
+			aForm.list = pList;
+			aForm.refresh(null);
+			aForm.synchronize(true, null);
+
 			stage.showAndWait();
 		}
 		return aForm;
@@ -347,7 +347,7 @@ public abstract class AForm implements Initializable {
 		Parent root = null;
 		AForm aForm = null;
 		try {
-			String dSayfa = app.getConfig().getString(pUrl);
+			String dSayfa = app.getFormUrl(pUrl);
 			URL dUrl = Root.class.getResource(dSayfa);
 			FXMLLoader fxmlLoader = new FXMLLoader(dUrl, app.getBundle());
 			root = fxmlLoader.load();
@@ -365,12 +365,12 @@ public abstract class AForm implements Initializable {
 			stage.setTitle(pTitle);
 			stage.initOwner(app.getPrimaryStage().getScene().getWindow());
 			stage.centerOnScreen();
-			if (aForm != null) {
-				aForm.dataEntity = pDataEntity;
-				aForm.list = pList;
-				aForm.refresh(null);
-				aForm.synchronize(true, null);
-			}
+
+			aForm.dataEntity = pDataEntity;
+			aForm.list = pList;
+			aForm.refresh(null);
+			aForm.synchronize(true, null);
+
 			stage.show();
 		}
 		return aForm;

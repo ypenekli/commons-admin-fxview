@@ -4,37 +4,40 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.yp.admin.data.Projects;
+import com.yp.admin.model.GroupModel;
+import com.yp.core.BaseConstants;
 import com.yp.core.fxview.ALauncher;
 import com.yp.core.user.IUser;
 
 public class Launcher extends ALauncher {
 
+	private static final ResourceBundle configBundle;
+
+	static {
+		configBundle = ResourceBundle.getBundle("fxview.admin.Config");
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
 
 	@Override
 	protected List<Projects> findRootMenuList(IUser pUser) {
-		// TODO Auto-generated method stub
-		return null;
+		return new GroupModel().findGroupList(pUser.getUserId(), getApplicationId());
 	}
-
-	@Override
-	protected ResourceBundle getConfig() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public String getFormUrl(String key) {
+		return configBundle.getString(key);
 	}
 
 	@Override
 	public ResourceBundle getBundle() {
-		// TODO Auto-generated method stub
-		return null;
+		return BaseConstants.BUNDLE_MESSAGE;
 	}
 
 	@Override
 	public String getStringConstant(String key) {
-		// TODO Auto-generated method stub
-		return null;
+		return BaseConstants.getString(key);
 	}
 
 }
