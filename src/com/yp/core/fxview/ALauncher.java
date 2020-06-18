@@ -21,17 +21,17 @@ import com.yp.core.entity.IDataEntity;
 import com.yp.core.entity.IResult;
 import com.yp.core.entity.Result;
 import com.yp.core.log.MyLogger;
-import com.yp.core.ref.IReference;
-import com.yp.core.ref.Reference;
 import com.yp.core.tools.DateTime;
 import com.yp.core.user.IUser;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 public abstract class ALauncher extends Application {
@@ -51,6 +51,8 @@ public abstract class ALauncher extends Application {
 	protected Stage primaryStage;
 	private FrmHome home;
 	public Stage WEB;
+	// public HostServices HostService;
+
 	protected IUser user;
 	protected List<Projects> rootMenuList;
 	protected List<ProjectSubfuncs> menuList;
@@ -60,6 +62,7 @@ public abstract class ALauncher extends Application {
 
 	@Override
 	public void init() throws Exception {
+		logger = new MyLogger(BaseConstants.getRootAddress());
 		Forms = new HashMap<>();
 		Parameters params = getParameters();
 		if (params != null) {
@@ -79,42 +82,42 @@ public abstract class ALauncher extends Application {
 	}
 
 	@Override
-	public void start(Stage pPrimaryStage) throws Exception {
-		logger = new MyLogger(BaseConstants.getRootAddress());
+	public void start(Stage pPrimaryStage) throws Exception {		
 		primaryStage = pPrimaryStage;
 
 		AForm.app = this;
 
-		Button btn = new Button();
-		btn.setText("Say 'Hello World");
-		btn.setOnAction(event -> {
-			System.out.println("Hello World!");
-			try {
-				String root = BaseConstants.getRootAddress();
-				System.out.println(root);
+		try {
+			// HostService = this.getHostServices();
 
-				IReference<String> ref = new Reference<>("A", BaseConstants.getString("1028"));
-				System.out.println("ref :" + ref.getDefinition());
-			} catch (Exception e) {
-				System.err.println(e);
-			}
-		});
-		StackPane root = new StackPane();
-		root.getChildren().add(btn);
-		Scene scene = new Scene(root, 300, 250);
-
-		primaryStage.setTitle("Hello World");
-		primaryStage.setScene(scene);
-		primaryStage.show();
+			final FXMLLoader fxmlLoader = new FXMLLoader(FrmHome.class.getResource("FrmHome.fxml"),
+					BaseConstants.BUNDLE_MESSAGE);
+			final Pane root = fxmlLoader.load();
+			final FrmHome fas = fxmlLoader.getController();
+			setHome(fas);
+			final Scene scene = new Scene((Parent) root, 850.0, 650.0);
+			scene.setFill((Paint) Color.OLDLACE);
+			setUserAgentStylesheet("CASPIAN");
+			primaryStage.setScene(scene);
+			primaryStage.setTitle(getApplicationName());
+			// primaryStage.getIcons().add(new
+			// Image(this.getClass().getResourceAsStream("/com/yp/ppti/imres/ppti.png")));
+			setMenuList(null, null);
+			fas.createMenu(null, null);
+			primaryStage.show();
+			primaryStage.centerOnScreen();
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, e.getMessage(), e);
+		}
 
 	}
 
 	protected void createDb() {
-		Logger.getLogger(MyLogger.NAME).log(Level.INFO, "Create database..");
+		logger.log(Level.INFO, "Create database..");
 	}
 
 	public void restore() {
-		Logger.getLogger(MyLogger.NAME).log(Level.INFO, "Restore database..");
+		logger.log(Level.INFO, "Restore database..");
 		String source = null;
 		File fKaynak = null;
 		String path = BaseConstants.getRootAddress();
@@ -125,7 +128,7 @@ public abstract class ALauncher extends Application {
 			try {
 				list = Files.readAllLines(file.toPath());
 			} catch (IOException h) {
-				Logger.getLogger(MyLogger.NAME).log(Level.SEVERE, h.getMessage(), h);
+				logger.log(Level.SEVERE, h.getMessage(), h);
 			}
 			if (!BaseConstants.isEmpty(list)) {
 				source = list.get(0);
@@ -143,7 +146,7 @@ public abstract class ALauncher extends Application {
 				FileUtils.copyDirectory(sourceFile, target);
 				FileUtils.deleteQuietly(fKaynak);
 			} catch (IOException h) {
-				Logger.getLogger(MyLogger.NAME).log(Level.SEVERE, h.getMessage(), h);
+				logger.log(Level.SEVERE, h.getMessage(), h);
 			}
 
 		}
@@ -151,7 +154,7 @@ public abstract class ALauncher extends Application {
 	}
 
 	public IResult<String> backup(String pDbName, String pBackupFileName) {
-		Logger.getLogger(MyLogger.NAME).log(Level.INFO, "Backup database..");
+		logger.log(Level.INFO, "Backup database..");
 		IResult<String> dSnc = new Result<>(true, "");
 
 		if (pDbName == null)
@@ -170,7 +173,7 @@ public abstract class ALauncher extends Application {
 		} catch (IOException h) {
 			dSnc.setSuccess(false);
 			dSnc.setMessage(BaseConstants.getString("FrmAyar.Yedekleme.Basarisiz"));
-			Logger.getLogger(MyLogger.NAME).log(Level.SEVERE, h.getMessage(), h);
+			logger.log(Level.SEVERE, h.getMessage(), h);
 		}
 		if (dSnc.isSuccess())
 			dSnc.setMessage(BaseConstants.getString("FrmAyar.Yedekleme.Basarili") + pBackupFileName);
@@ -179,12 +182,12 @@ public abstract class ALauncher extends Application {
 	}
 
 	protected boolean checkApplicationConfig() {
-		Logger.getLogger(MyLogger.NAME).log(Level.INFO, "Check application config..");
+		logger.log(Level.INFO, "Check application config..");
 		return true;
 	}
 
-	protected static void checkApplicationRelease() {
-		Logger.getLogger(MyLogger.NAME).log(Level.INFO, "Check application release..");
+	protected void checkApplicationRelease() {
+		logger.log(Level.INFO, "Check application release..");
 	}
 
 	protected abstract List<Projects> findRootMenuList(IUser pUser);
