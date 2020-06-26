@@ -54,12 +54,12 @@ public class FrmHome extends AForm {
 	}
 
 	public void createMenu(final List<Projects> pRootMenuList, final List<ProjectSubfuncs> pMenuList) {
-		(this.menuBar = new MenuBar()).setId("AnaSayfa");
-		Menu mProje = new Menu(BaseConstants.getString("FrmAnaSayfa.1"));
+		(this.menuBar = new MenuBar()).setId("Home");
+		Menu mProje = new Menu(BaseConstants.getString("FrmHome.1"));
 		this.menuBar.getMenus().add(mProje);
-		final MenuItem mProje2 = new MenuItem(BaseConstants.getString("Giris"));
+		final MenuItem mProje2 = new MenuItem(BaseConstants.getString("Login"));
 		mProje2.setDisable(app.getUser() != null);
-		mProje2.setOnAction(event -> show("0", ".Giris", BaseConstants.getString("Giris"), (IDataEntity) null,
+		mProje2.setOnAction(event -> show("0", ".Login", BaseConstants.getString("Login"), (IDataEntity) null,
 				BaseConstants.BUNDLE_MESSAGE));
 		mProje.getItems().add(mProje2);
 		mProje.getItems().add(new SeparatorMenuItem());
@@ -69,7 +69,7 @@ public class FrmHome extends AForm {
 				app.getUser(), BaseConstants.BUNDLE_MESSAGE));
 		mProje.getItems().add(mProje3);
 		mProje.getItems().add(new SeparatorMenuItem());
-		final MenuItem mProje4 = new MenuItem(BaseConstants.getString("FrmAnaSayfa.8"));
+		final MenuItem mProje4 = new MenuItem(BaseConstants.getString("FrmHome.8"));
 		mProje4.setOnAction(event -> app.exit());
 		mProje.getItems().add(mProje4);
 		if (pMenuList != null) {
@@ -82,25 +82,25 @@ public class FrmHome extends AForm {
 				}
 			}
 		}
-		final Menu mProje5 = new Menu(BaseConstants.getString("FrmAnaSayfa.2"));
+		final Menu mProje5 = new Menu(BaseConstants.getString("FrmHome.2"));
 		mProje5.setAccelerator(KeyCombination.keyCombination("F1"));
 		this.menuBar.getMenus().add(mProje5);
-		final MenuItem mProje6 = new MenuItem(BaseConstants.getString("FrmAnaSayfa.2.Ayar"));
-		mProje6.setOnAction(event -> show("2", ".Ayar", BaseConstants.getString("FrmAnaSayfa.2.Ayar"),
+		final MenuItem mProje6 = new MenuItem(BaseConstants.getString("FrmHome.2.Config"));
+		mProje6.setOnAction(event -> show("2", ".Config", BaseConstants.getString("FrmHome.2.Config"),
 				(IDataEntity) null, (ResourceBundle) null));
 		mProje5.getItems().add(mProje6);
 		mProje5.getItems().add(new SeparatorMenuItem());
-		final MenuItem mProje7 = new MenuItem(BaseConstants.getString("FrmAnaSayfa.2.Yardim"));
+		final MenuItem mProje7 = new MenuItem(BaseConstants.getString("FrmHome.2.Help"));
 		mProje7.setOnAction(event -> {
 			final String url = app.getHelpUrl() + "/yardim.html";
 			dataEntity = new Projects();
 			dataEntity.set("url", url);
-			show(FrmHome.this.id, ".Bos", (String) null, dataEntity, (ResourceBundle) null);
+			show(FrmHome.this.id, ".Empty", (String) null, dataEntity, (ResourceBundle) null);
 		});
 		mProje5.getItems().add(mProje7);
 		mProje5.getItems().add(new SeparatorMenuItem());
-		final MenuItem mProje8 = new MenuItem(BaseConstants.getString("FrmAnaSayfa.2.Hakkinda"));
-		mProje8.setOnAction(event -> show("4", ".Hakkinda", BaseConstants.getString("FrmAnaSayfa.2.Hakkinda"),
+		final MenuItem mProje8 = new MenuItem(BaseConstants.getString("FrmHome.2.About"));
+		mProje8.setOnAction(event -> show("4", ".About", BaseConstants.getString("FrmHome.2.About"),
 				(IDataEntity) null, (ResourceBundle) null));
 		mProje5.getItems().add(mProje8);
 		if (app.getUser() != null) {

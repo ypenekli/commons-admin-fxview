@@ -560,12 +560,12 @@ public abstract class AForm implements Initializable {
 
 	@FXML
 	public void close(ActionEvent arg0) {
-		show(id, ".Bos", null, dataEntity, null);
+		show(id, ".Empty", null, dataEntity, null);
 	}
 
 	@FXML
 	public void cancel(ActionEvent arg0) {
-		show(id, ".Bos", null, dataEntity, null);
+		show(id, ".Empty", null, dataEntity, null);
 	}
 
 	@FXML

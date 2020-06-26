@@ -82,7 +82,7 @@ public abstract class ALauncher extends Application {
 	}
 
 	@Override
-	public void start(Stage pPrimaryStage) throws Exception {		
+	public void start(Stage pPrimaryStage) throws Exception {
 		primaryStage = pPrimaryStage;
 
 		AForm.app = this;
@@ -243,12 +243,12 @@ public abstract class ALauncher extends Application {
 		closeAllForms();
 		Platform.exit();
 		System.exit(0);
-	}	
+	}
 
 	public abstract ResourceBundle getBundle();
 
 	public abstract String getStringConstant(String key);
-	
+
 	public abstract String getFormUrl(String key);
 
 	public String getApplicationId() {

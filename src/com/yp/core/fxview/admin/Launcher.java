@@ -9,6 +9,8 @@ import com.yp.core.BaseConstants;
 import com.yp.core.fxview.ALauncher;
 import com.yp.core.user.IUser;
 
+import javafx.stage.Stage;
+
 public class Launcher extends ALauncher {
 
 	private static final ResourceBundle configBundle;
@@ -16,7 +18,7 @@ public class Launcher extends ALauncher {
 	static {
 		configBundle = ResourceBundle.getBundle("fxview.admin.Config");
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -25,7 +27,7 @@ public class Launcher extends ALauncher {
 	protected List<Projects> findRootMenuList(IUser pUser) {
 		return new GroupModel().findGroupList(pUser.getUserId(), getApplicationId());
 	}
-	
+
 	public String getFormUrl(String key) {
 		return configBundle.getString(key);
 	}
