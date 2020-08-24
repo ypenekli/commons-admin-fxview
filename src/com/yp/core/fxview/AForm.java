@@ -438,7 +438,7 @@ public abstract class AForm implements Initializable {
 		if (app.getUser() != null) {
 			user = app.getUser().getEmail();
 		}
-		pDataEntity.setLastUserInfo(user, getClientIP(), getDate());
+		pDataEntity.setLastClientInfo(user, getClientIP(), getDate());
 	}
 
 	protected void setUserInfo(IDataEntity pDataEntity) {
@@ -446,7 +446,7 @@ public abstract class AForm implements Initializable {
 		if (app.getUser() != null) {
 			user = app.getUser().getEmail();
 		}
-		pDataEntity.setUserInfo(user, getClientIP(), getDate());
+		pDataEntity.setClientInfo(user, getClientIP(), getDate());
 	}
 
 	public Date getDate() {

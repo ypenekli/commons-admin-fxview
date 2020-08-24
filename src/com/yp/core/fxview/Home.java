@@ -10,7 +10,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
-import com.yp.admin.data.ProjectSubfuncs;
+import com.yp.admin.data.ProjectFuncs;
 import com.yp.admin.data.Projects;
 import com.yp.core.BaseConstants;
 import com.yp.core.entity.IDataEntity;
@@ -30,7 +30,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
-public class FrmHome extends AForm {
+public class Home extends AForm {
 	@FXML
 	public BorderPane root;
 	@FXML
@@ -50,10 +50,10 @@ public class FrmHome extends AForm {
 	private static String localConfig;
 
 	static {
-		FrmHome.localConfig = Locale.getDefault().getLanguage();
+		Home.localConfig = Locale.getDefault().getLanguage();
 	}
 
-	public void createMenu(final List<Projects> pRootMenuList, final List<ProjectSubfuncs> pMenuList) {
+	public void createMenu(final List<ProjectFuncs> pMenuList) {
 		(this.menuBar = new MenuBar()).setId("Home");
 		Menu mProje = new Menu(BaseConstants.getString("FrmHome.1"));
 		this.menuBar.getMenus().add(mProje);
@@ -74,7 +74,7 @@ public class FrmHome extends AForm {
 		mProje.getItems().add(mProje4);
 		if (pMenuList != null) {
 			for (int dI = 0; dI < pMenuList.size(); ++dI) {
-				final ProjectSubfuncs de = pMenuList.get(dI);
+				final ProjectFuncs de = pMenuList.get(dI);
 				if (de.isStatusActive() && de.getLevel() == 2) {
 					mProje = new Menu(de.getName());
 					menuBar.getMenus().add(mProje);
@@ -95,13 +95,13 @@ public class FrmHome extends AForm {
 			final String url = app.getHelpUrl() + "/yardim.html";
 			dataEntity = new Projects();
 			dataEntity.set("url", url);
-			show(FrmHome.this.id, ".Empty", (String) null, dataEntity, (ResourceBundle) null);
+			show(Home.this.id, ".Empty", (String) null, dataEntity, (ResourceBundle) null);
 		});
 		mProje5.getItems().add(mProje7);
 		mProje5.getItems().add(new SeparatorMenuItem());
 		final MenuItem mProje8 = new MenuItem(BaseConstants.getString("FrmHome.2.About"));
-		mProje8.setOnAction(event -> show("4", ".About", BaseConstants.getString("FrmHome.2.About"),
-				(IDataEntity) null, (ResourceBundle) null));
+		mProje8.setOnAction(event -> show("4", ".About", BaseConstants.getString("FrmHome.2.About"), (IDataEntity) null,
+				(ResourceBundle) null));
 		mProje5.getItems().add(mProje8);
 		if (app.getUser() != null) {
 			setUserLabel(app.getUser().getEmail() + ", " + app.getUser().getFullName());
@@ -111,10 +111,10 @@ public class FrmHome extends AForm {
 		this.root.setBottom((Node) this.statusBar);
 	}
 
-	private void fillSubMenu(final List<ProjectSubfuncs> pListe, final Menu pMenu, final String pUstkod,
+	private void fillSubMenu(final List<ProjectFuncs> pListe, final Menu pMenu, final String pUstkod,
 			final int pAltSinir) {
 		for (int dI = pAltSinir; dI < pListe.size(); ++dI) {
-			final ProjectSubfuncs de = pListe.get(dI);
+			final ProjectFuncs de = pListe.get(dI);
 			if (de.isStatusActive() && pUstkod.equals(de.getParentId())) {
 				MenuItem mProje;
 				if (!de.isLeaf()) {
@@ -135,8 +135,8 @@ public class FrmHome extends AForm {
 
 	public static void setLocalConfig(final String pFormat) {
 		if (!StringTool.isNull(pFormat)) {
-			FrmHome.localConfig = pFormat;
-			final String[] dDizi = FrmHome.localConfig.split("_");
+			Home.localConfig = pFormat;
+			final String[] dDizi = Home.localConfig.split("_");
 			AForm.FORMAT_CURRENCY = NumberFormat.getCurrencyInstance(new Locale(dDizi[0], dDizi[1]));
 		}
 	}
@@ -144,7 +144,7 @@ public class FrmHome extends AForm {
 	@Override
 	public byte[] getImage(final String fileName) {
 		byte[] b = null;
-		try (InputStream is = new BufferedInputStream(FrmHome.class.getClassLoader().getResourceAsStream(fileName));) {
+		try (InputStream is = new BufferedInputStream(Home.class.getClassLoader().getResourceAsStream(fileName));) {
 			b = new byte[is.available()];
 			is.read(b);
 		} catch (IOException e) {

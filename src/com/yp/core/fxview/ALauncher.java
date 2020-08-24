@@ -14,8 +14,8 @@ import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
 
-import com.yp.admin.data.ProjectSubfuncs;
-import com.yp.admin.data.Projects;
+import com.yp.admin.data.Groups;
+import com.yp.admin.data.ProjectFuncs;
 import com.yp.core.BaseConstants;
 import com.yp.core.entity.IDataEntity;
 import com.yp.core.entity.IResult;
@@ -49,13 +49,13 @@ public abstract class ALauncher extends Application {
 
 	public MyLogger logger;
 	protected Stage primaryStage;
-	private FrmHome home;
+	private Home home;
 	public Stage WEB;
 	// public HostServices HostService;
 
 	protected IUser user;
-	protected List<Projects> rootMenuList;
-	protected List<ProjectSubfuncs> menuList;
+	protected List<Groups> rootMenuList;
+	protected List<ProjectFuncs> menuList;
 	protected List<IDataEntity> dataList;
 
 	protected Map<String, Pane> Forms;
@@ -90,10 +90,10 @@ public abstract class ALauncher extends Application {
 		try {
 			// HostService = this.getHostServices();
 
-			final FXMLLoader fxmlLoader = new FXMLLoader(FrmHome.class.getResource("FrmHome.fxml"),
+			final FXMLLoader fxmlLoader = new FXMLLoader(Home.class.getResource("FrmHome.fxml"),
 					BaseConstants.BUNDLE_MESSAGE);
 			final Pane root = fxmlLoader.load();
-			final FrmHome fas = fxmlLoader.getController();
+			final Home fas = fxmlLoader.getController();
 			setHome(fas);
 			final Scene scene = new Scene((Parent) root, 850.0, 650.0);
 			scene.setFill((Paint) Color.OLDLACE);
@@ -102,8 +102,8 @@ public abstract class ALauncher extends Application {
 			primaryStage.setTitle(getApplicationName());
 			// primaryStage.getIcons().add(new
 			// Image(this.getClass().getResourceAsStream("/com/yp/ppti/imres/ppti.png")));
-			setMenuList(null, null);
-			fas.createMenu(null, null);
+			setMenuList(null);
+			fas.createMenu(null);
 			primaryStage.show();
 			primaryStage.centerOnScreen();
 		} catch (Exception e) {
@@ -112,6 +112,10 @@ public abstract class ALauncher extends Application {
 
 	}
 
+	public void showStartup() {
+		home.show("0", ".Bos", null, null, getBundle());
+	}
+	
 	protected void createDb() {
 		logger.log(Level.INFO, "Create database..");
 		System.setProperty("derby.system.home", BaseConstants.getRootAddress());
@@ -182,7 +186,7 @@ public abstract class ALauncher extends Application {
 		return dSnc;
 	}
 
-	protected boolean checkApplicationConfig() {
+	public boolean checkApplicationConfig(Groups pRoot) {
 		logger.log(Level.INFO, "Check application config..");
 		return true;
 	}
@@ -191,7 +195,7 @@ public abstract class ALauncher extends Application {
 		logger.log(Level.INFO, "Check application release..");
 	}
 
-	protected abstract List<Projects> findRootMenuList(IUser pUser);
+	protected abstract List<Groups> findRootMenuList(IUser pUser);
 
 	public Stage getPrimaryStage() {
 		return primaryStage;
@@ -201,11 +205,11 @@ public abstract class ALauncher extends Application {
 		primaryStage = pPrimaryStage;
 	}
 
-	public FrmHome getHome() {
+	public Home getHome() {
 		return home;
 	}
 
-	public void setHome(FrmHome pHome) {
+	public void setHome(Home pHome) {
 		home = pHome;
 	}
 
@@ -283,20 +287,20 @@ public abstract class ALauncher extends Application {
 		return getStringConstant("Application.Home.File.Name");
 	}
 
-	public List<ProjectSubfuncs> getMenuList() {
+	public List<ProjectFuncs> getMenuList() {
 		return menuList;
 	}
 
-	public List<Projects> getRootMenuList() {
+	public List<Groups> getRootMenuList() {
 		return rootMenuList;
 	}
 
-	public void setMenuList(final List<Projects> pRootMenuList, final List<ProjectSubfuncs> pMenuList) {
+	public void setMenuList(final List<ProjectFuncs> pMenuList) {
 		menuList = pMenuList;
 		Pane dP = (Pane) getPrimaryStage().getScene().getRoot();
 		dP.getChildren().clear();
 		if (pMenuList != null && !pMenuList.isEmpty())
-			home.createMenu(pRootMenuList, menuList);
+			home.createMenu(menuList);
 	}
 
 	public static void main(String[] args) {

@@ -14,7 +14,7 @@
 <?import javafx.scene.control.Separator?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="com.yp.core.fxview.FrmHome" fx:id="root">
+fx:controller="com.yp.core.fxview.Home" fx:id="root">
 	<top>
       <Pane fx:id="menu" BorderPane.alignment="TOP_LEFT" />
    </top>

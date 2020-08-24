@@ -3,13 +3,11 @@ package com.yp.core.fxview.admin;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.yp.admin.data.Projects;
+import com.yp.admin.data.Groups;
 import com.yp.admin.model.GroupModel;
 import com.yp.core.BaseConstants;
 import com.yp.core.fxview.ALauncher;
 import com.yp.core.user.IUser;
-
-import javafx.stage.Stage;
 
 public class Launcher extends ALauncher {
 
@@ -24,8 +22,8 @@ public class Launcher extends ALauncher {
 	}
 
 	@Override
-	protected List<Projects> findRootMenuList(IUser pUser) {
-		return new GroupModel().findGroupList(pUser.getUserId(), getApplicationId());
+	protected List<Groups> findRootMenuList(IUser pUser) {
+		return new GroupModel().findGroupList(pUser.getId(), getApplicationId());
 	}
 
 	public String getFormUrl(String key) {
