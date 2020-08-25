@@ -75,7 +75,7 @@ public class Home extends AForm {
 		if (pMenuList != null) {
 			for (int dI = 0; dI < pMenuList.size(); ++dI) {
 				final ProjectFuncs de = pMenuList.get(dI);
-				if (de.isStatusActive() && de.getLevel() == 2) {
+				if (de.isStatusEnabled() && de.getLevel() == 2) {
 					mProje = new Menu(de.getName());
 					menuBar.getMenus().add(mProje);
 					fillSubMenu(pMenuList, mProje, de.getId(), dI);
@@ -115,7 +115,7 @@ public class Home extends AForm {
 			final int pAltSinir) {
 		for (int dI = pAltSinir; dI < pListe.size(); ++dI) {
 			final ProjectFuncs de = pListe.get(dI);
-			if (de.isStatusActive() && pUstkod.equals(de.getParentId())) {
+			if (de.isStatusEnabled() && pUstkod.equals(de.getParentId())) {
 				MenuItem mProje;
 				if (!de.isLeaf()) {
 					mProje = new Menu(de.getName());

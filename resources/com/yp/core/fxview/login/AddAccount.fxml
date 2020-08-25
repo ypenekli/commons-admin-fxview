@@ -22,7 +22,7 @@
 <GridPane xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="com.yp.core.fxview.login.AddAccount" hgap="5" vgap="5" fx:id="self"   prefWidth="700">
 	<TabPane GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="3" fx:id="syf" GridPane.hgrow="ALWAYS" prefWidth="700">
-		<Tab text="%AddAccount.EPosta" fx:id="syf1" closable="false" >
+		<Tab text="%AddAccount.EMail" fx:id="syf1" closable="false" >
 		<GridPane  GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2"  hgap="5" vgap="5" >
 			<Label 		GridPane.columnIndex="0" GridPane.rowIndex="0"  GridPane.columnSpan="4"  text="%AddAccount.EpostaAck" >
 				<font><Font name="System Bold" size="18.0" /></font>
@@ -31,7 +31,7 @@
 				<Insets bottom="10" left="2" right="2" top="25" />
 			</padding>	
 			
-			<Label 		GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="right"  text="%AddAccount.EPosta" style="-fx-font-weight: bold;"/>
+			<Label 		GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="right"  text="%AddAccount.EMail" style="-fx-font-weight: bold;"/>
 			<Label 		GridPane.columnIndex="1" GridPane.rowIndex="1" text="*" style="-fx-font-weight: bold;-fx-text-fill: red;"/>
 			<Label 		GridPane.columnIndex="2" GridPane.rowIndex="1" text="%Ikinokta" />
 			<TextField  GridPane.columnIndex="3" GridPane.rowIndex="1" fx:id="txtEPosta" prefWidth="300" />				
@@ -103,7 +103,7 @@
 			<GridPane GridPane.columnIndex="0" GridPane.rowIndex="1"
 				GridPane.columnSpan="2" hgap="5" vgap="5">
 			
-			<Label 		GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="right"  text="%AddAccount.EPosta" style="-fx-font-weight: bold;"/>
+			<Label 		GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="right"  text="%AddAccount.EMail" style="-fx-font-weight: bold;"/>
 			<Label 		GridPane.columnIndex="1" GridPane.rowIndex="1" text="*" style="-fx-font-weight: bold;-fx-text-fill: red;"/>
 			<Label 		GridPane.columnIndex="2" GridPane.rowIndex="1" text="%Ikinokta" />
 			<Label  	GridPane.columnIndex="3" GridPane.rowIndex="1" text="${controller.account.email}"  />		

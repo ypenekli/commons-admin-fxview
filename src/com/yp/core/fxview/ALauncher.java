@@ -43,9 +43,10 @@ public abstract class ALauncher extends Application {
 	protected static boolean isCreateDb;
 	protected static String updateUrl;
 
-	protected static final String CREATEDB = "--createdb=";
+	protected static final String CREATEDB = "createdb";
 	protected static final String URL = "--url=";
-	protected static final String PATH = "--path=";
+	//protected static final String PATH = "--path=";
+	protected static final String PATH = "path";
 
 	public MyLogger logger;
 	protected Stage primaryStage;
@@ -113,7 +114,7 @@ public abstract class ALauncher extends Application {
 	}
 
 	public void showStartup() {
-		home.show("0", ".Bos", null, null, getBundle());
+		home.show("0", ".Empty", null, null, getBundle());
 	}
 	
 	protected void createDb() {
