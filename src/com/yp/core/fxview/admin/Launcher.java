@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.yp.admin.Constants;
 import com.yp.admin.data.Commons;
 import com.yp.admin.data.GroupProjectFuncs;
 import com.yp.admin.data.GroupUsers;
@@ -45,7 +46,7 @@ public class Launcher extends ALauncher {
 
 	@Override
 	public ResourceBundle getBundle() {
-		return BaseConstants.BUNDLE_MESSAGE;
+		return Constants.bundleMessage;
 	}
 
 	@Override

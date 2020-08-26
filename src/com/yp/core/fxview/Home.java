@@ -59,14 +59,14 @@ public class Home extends AForm {
 		this.menuBar.getMenus().add(mProje);
 		final MenuItem mProje2 = new MenuItem(BaseConstants.getString("Login"));
 		mProje2.setDisable(app.getUser() != null);
-		mProje2.setOnAction(event -> show("0", ".Login", BaseConstants.getString("Login"), (IDataEntity) null,
-				BaseConstants.BUNDLE_MESSAGE));
+		mProje2.setOnAction(
+				event -> show("0", ".Login", BaseConstants.getString("Login"), (IDataEntity) null, app.getBundle()));
 		mProje.getItems().add(mProje2);
 		mProje.getItems().add(new SeparatorMenuItem());
 		final MenuItem mProje3 = new MenuItem(BaseConstants.getString("ChangePassword"));
 		mProje3.setDisable(app.getUser() == null);
 		mProje3.setOnAction(event -> show("1", ".ChangePassword", BaseConstants.getString("ChangePassword"),
-				app.getUser(), BaseConstants.BUNDLE_MESSAGE));
+				app.getUser(), app.getBundle()));
 		mProje.getItems().add(mProje3);
 		mProje.getItems().add(new SeparatorMenuItem());
 		final MenuItem mProje4 = new MenuItem(BaseConstants.getString("FrmHome.8"));
@@ -136,8 +136,8 @@ public class Home extends AForm {
 	public static void setLocalConfig(final String pFormat) {
 		if (!StringTool.isNull(pFormat)) {
 			Home.localConfig = pFormat;
-			final String[] dDizi = Home.localConfig.split("_");
-			AForm.FORMAT_CURRENCY = NumberFormat.getCurrencyInstance(new Locale(dDizi[0], dDizi[1]));
+			final String[] splits = Home.localConfig.split("_");
+			formatCurrency = NumberFormat.getCurrencyInstance(new Locale(splits[0], splits[1]));
 		}
 	}
 

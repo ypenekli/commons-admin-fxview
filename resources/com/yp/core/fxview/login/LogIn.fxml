@@ -24,11 +24,11 @@ xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yp.core.fxview.login.LogI
 
 	<Label GridPane.rowIndex="0" GridPane.columnIndex="1"   GridPane.columnSpan="4" style="-fx-font-weight: bold;" text="%FrmGiris.Header"  />
 	
-	<Label 			GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.halignment="right"  style="-fx-font-weight: bold;" text="%FrmGiris.Eposta"  />
+	<Label 			GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.halignment="right"  style="-fx-font-weight: bold;" text="%EMail"  />
 	<TextField  	GridPane.rowIndex="1" GridPane.columnIndex="1"  fx:id="txtUser" promptText="%FrmGiris.EpostaUyari" prefWidth="250"/>
 	
-	<Label 			GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.halignment="right"  style="-fx-font-weight: bold;" text="%FrmGiris.Parola"  />
-	<PasswordField  GridPane.rowIndex="2" GridPane.columnIndex="1" fx:id="txtPasword" promptText="%FrmGiris.ParolaUyari"  prefWidth="250"/>
+	<Label 			GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.halignment="right"  style="-fx-font-weight: bold;" text="%Password"  />
+	<PasswordField  GridPane.rowIndex="2" GridPane.columnIndex="1" fx:id="txtPasword" promptText="%PasswordWarning"  prefWidth="250"/>
 	
 	<HBox 			GridPane.rowIndex="3" GridPane.columnIndex="1"  alignment="bottom_left" spacing="10" >
 		<Button fx:id="btnLogin" defaultButton="true" onAction="#logIn" text="%Tamam" />

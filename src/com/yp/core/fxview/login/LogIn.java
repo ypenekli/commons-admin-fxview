@@ -110,7 +110,7 @@ public class LogIn extends AForm {
 				try {
 					String appId = app.getApplicationId();
 					String clientIp = InetAddress.getLocalHost().getHostName();
-					IResult<Object[]> res = null;
+					IResult<IUser> res = null;
 					res = getUserModel().logIn(txtUser.getText(), txtPasword.getText(), appId, clientIp);
 					if (res != null) {
 						message = res.getMessage();
@@ -121,7 +121,7 @@ public class LogIn extends AForm {
 							lnkSendPwd.setVisible(false);
 							lblSendPwd.setVisible(false);
 
-							IUser user = (IUser) res.getData()[0];
+							IUser user = res.getData();
 							app.setUser(user);
 							if (app.getRootMenuList().size() > 1)
 								genereteRootMenu(app.getRootMenuList());

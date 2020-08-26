@@ -8,7 +8,6 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -64,7 +63,7 @@ public abstract class AForm implements Initializable {
 	protected IResult<?> result;
 	protected IDataEntity dataEntity;
 	protected List<IDataEntity> list;
-	public static NumberFormat FORMAT_CURRENCY;
+	protected static NumberFormat formatCurrency;
 	protected String message;
 	private Alert alert;
 	private Alert confirm;
@@ -84,7 +83,7 @@ public abstract class AForm implements Initializable {
 	protected OnSaveCompletedListener<?> onSaveCompletedListener;
 
 	static {
-		AForm.FORMAT_CURRENCY = NumberFormat.getCurrencyInstance();
+		formatCurrency = NumberFormat.getCurrencyInstance();
 	}
 
 	public AForm() {
@@ -253,7 +252,7 @@ public abstract class AForm implements Initializable {
 	}
 
 	protected AForm showModal(String pIslvkod, String pUrl, String pTitle, IDataEntity pDataEntity,
-			ArrayList<IDataEntity> pList, boolean pResizable) {
+			List<IDataEntity> pList, boolean pResizable) {
 		String fnId = pIslvkod + pUrl;
 		app.logger.log(Level.INFO, "Sub function id {0}.", fnId);
 		URL dUrl = null;
