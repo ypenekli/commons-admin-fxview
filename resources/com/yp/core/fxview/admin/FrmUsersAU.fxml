@@ -29,7 +29,7 @@
 	<HBox GridPane.columnIndex="0" GridPane.rowIndex="1"
 		GridPane.hgrow="ALWAYS" prefWidth="700">
 		<ToolBar  HBox.hgrow="ALWAYS">
-			<Button onAction="#close" text="%Kapat"
+			<Button onAction="#hide" text="%Kapat"
 				disable="${controller.gosterMeKapat}" />
 			<Separator />
 			<Button onAction="#refresh" text="%Yenile"
@@ -73,8 +73,7 @@
 		<font>
 			<Font name="System Bold" size="18.0" />
 		</font>
-	</Label>
-	
+	</Label>	
 
 	<GridPane  hgap="5" vgap="5" GridPane.rowIndex="4">
 		
@@ -151,9 +150,10 @@
 		<Label 		GridPane.columnIndex="1" GridPane.rowIndex="14" GridPane.columnSpan="4" text="%Zorunlu" style="-fx-text-fill: red;" />
 		<Button 	GridPane.columnIndex="0" GridPane.rowIndex="15" GridPane.columnSpan="3" GridPane.halignment="right"  fx:id="btnSave" defaultButton="true" onAction="#save" text="%Kaydet"  />
 		<Button 	GridPane.columnIndex="3" GridPane.rowIndex="15" onAction="#add" text="%EkleYeni" />
-		<Button 	GridPane.columnIndex="7" GridPane.rowIndex="15" GridPane.halignment="right"  fx:id="btnCancel" onAction="#cancel" text="%Iptal" />
+		<Button 	GridPane.columnIndex="7" GridPane.rowIndex="15" GridPane.halignment="right"  fx:id="btnCancel" onAction="#close" text="%Iptal" />
 		
-			
+	   	<padding>
+			<Insets bottom="5" left="5" right="2" top="2" />
+		</padding>				
 	</GridPane>
-
 </GridPane>

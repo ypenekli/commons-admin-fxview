@@ -561,6 +561,10 @@ public abstract class AForm implements Initializable {
 	public void close(ActionEvent arg0) {
 		show(id, ".Empty", null, dataEntity, null);
 	}
+	
+	public void hide(final ActionEvent arg0) {
+		((Stage) self.getScene().getWindow()).hide();
+	}
 
 	@FXML
 	public void cancel(ActionEvent arg0) {

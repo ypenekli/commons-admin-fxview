@@ -21,7 +21,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class UsersAU extends RootPage {
 	@FXML
@@ -169,11 +168,8 @@ public class UsersAU extends RootPage {
 		synchronize(true, (Object[]) null);
 	}
 
-	public void cancel(ActionEvent arg0) {
-		((Stage) this.self.getScene().getWindow()).hide();
-	}
-
+	@Override
 	public void close(ActionEvent arg0) {
-		((Stage) this.self.getScene().getWindow()).hide();
+		hide(arg0);
 	}
 }
