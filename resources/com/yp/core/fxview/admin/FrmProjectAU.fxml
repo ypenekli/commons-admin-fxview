@@ -70,7 +70,7 @@
 		</font>
 	</Label>
 
-	<GridPane  hgap="5" vgap="5" GridPane.rowIndex="4">	
+	<GridPane  hgap="5" vgap="5" GridPane.rowIndex="4" GridPane.hgrow="ALWAYS">	
         <Label style="-fx-font-weight: bold;" text="%FrmProjectAUL.Id" GridPane.columnIndex="0" GridPane.halignment="right" GridPane.rowIndex="2" />
         <Label style="-fx-font-weight: bold;-fx-text-fill: red;" text="*" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 		<Label text="%Ikinokta" GridPane.columnIndex="2" GridPane.rowIndex="2" />

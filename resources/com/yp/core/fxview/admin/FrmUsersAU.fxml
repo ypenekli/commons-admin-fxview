@@ -150,7 +150,7 @@
 		<Label 		GridPane.columnIndex="1" GridPane.rowIndex="14" GridPane.columnSpan="4" text="%Zorunlu" style="-fx-text-fill: red;" />
 		<Button 	GridPane.columnIndex="0" GridPane.rowIndex="15" GridPane.columnSpan="3" GridPane.halignment="right"  fx:id="btnSave" defaultButton="true" onAction="#save" text="%Kaydet"  />
 		<Button 	GridPane.columnIndex="3" GridPane.rowIndex="15" onAction="#add" text="%EkleYeni" />
-		<Button 	GridPane.columnIndex="7" GridPane.rowIndex="15" GridPane.halignment="right"  fx:id="btnCancel" onAction="#close" text="%Iptal" />
+		<Button 	GridPane.columnIndex="7" GridPane.rowIndex="15" GridPane.halignment="right"  fx:id="btnCancel" onAction="#close" text="%Kapat" />
 		
 	   	<padding>
 			<Insets bottom="5" left="5" right="2" top="2" />

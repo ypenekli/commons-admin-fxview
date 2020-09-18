@@ -64,7 +64,7 @@ public class Account extends PropertyWraper<Users> {
 	}
 
 	public String getHomeCity() {
-		return homeCity.getValue().getDefinition();
+		return homeCity.getValue().getValue();
 	}
 
 	private StringProperty phone;
