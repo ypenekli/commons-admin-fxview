@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableRow;
@@ -28,7 +29,7 @@ public class CommonsAUL extends RootPage {
 	@FXML
 	private TableView<IDataEntity> tSubitems2;
 	@FXML
-	private TextField txtId;
+	private Label txtId;
 	@FXML
 	private TextField txtName;
 	@FXML

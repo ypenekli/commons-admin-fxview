@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableRow;
@@ -33,7 +34,7 @@ public class ProjectAUL extends RootPage {
 	@FXML
 	private TableView<ProjectFuncs> tSubitems;
 	@FXML
-	private TextField txtId;
+	private Label txtId;
 	@FXML
 	private TextField txtName;
 	@FXML
@@ -73,12 +74,12 @@ public class ProjectAUL extends RootPage {
 				} else {
 					scmTarget.getSelectionModel().clearSelection();
 				}
-
-				subitems = getProjectFuncModel().findProjectFuncs(selectedProjectFuncs.getId());
-				refresh(tSubitems, subitems, (IDataEntity) null);
+				if (!selectedProjectFuncs.isLeaf()) {
+					subitems = getProjectFuncModel().findProjectFuncs(selectedProjectFuncs.getId());
+					refresh(tSubitems, subitems, (IDataEntity) null);
+				}
 				checkFormItems();
 			} else {
-				selectedProjectFuncs.setId(txtId.getText());
 				selectedProjectFuncs.setName(txtName.getText());
 				selectedProjectFuncs.setUrl(txtUrl.getText());
 				if (scmTarget.getSelectionModel().getSelectedIndex() > -1) {

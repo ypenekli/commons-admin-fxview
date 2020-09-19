@@ -60,7 +60,7 @@ public abstract class AForm implements Initializable {
 	protected Pane self;
 
 	protected static ALauncher app;
-	protected IResult<?> result;
+	protected IResult result;
 	protected IDataEntity dataEntity;
 	protected List<IDataEntity> list;
 	protected static NumberFormat formatCurrency;

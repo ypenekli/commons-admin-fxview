@@ -3,7 +3,7 @@ package com.yp.core.fxview.data;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import com.yp.core.entity.IDataEntity;
+import com.yp.core.entity.DataEntity;
 import com.yp.core.ref.IReference;
 import com.yp.core.tools.DateTime;
 
@@ -13,13 +13,13 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class PropertyWraper<T extends IDataEntity> {
+public abstract class PropertyWrapper extends DataEntity {
 
-	protected T data;
+	private static final long serialVersionUID = 983248983559284948L;
 
-	public PropertyWraper(T pDe) {
+	public PropertyWrapper(DataEntity pDe) {
 		super();
-		data = pDe;
+		load(pDe);
 	}
 
 	public class BooleanProperty extends SimpleBooleanProperty {
@@ -43,7 +43,7 @@ public class PropertyWraper<T extends IDataEntity> {
 		@Override
 		public void set(boolean pBoolean) {
 			super.set(pBoolean);
-			data.set(fieldName, pBoolean ? trueValue : falseValue);
+			PropertyWrapper.this.set(fieldName, pBoolean ? trueValue : falseValue);
 		}
 
 		public Object getTrueValue() {
@@ -81,7 +81,7 @@ public class PropertyWraper<T extends IDataEntity> {
 		public void set(String pValue) {
 			String value = checkString != null ? checkString.getChecked(pValue) : pValue;
 			super.set(value);
-			data.setField(fieldName, value, isChanged);
+			PropertyWrapper.this.setField(fieldName, value, isChanged);
 		}
 
 	}
@@ -118,7 +118,7 @@ public class PropertyWraper<T extends IDataEntity> {
 		@Override
 		public void set(double pValue) {
 			super.set(pValue);
-			data.setField(fieldName, pValue, isChanged);
+			PropertyWrapper.this.setField(fieldName, pValue, isChanged);
 		}
 	}
 
@@ -150,7 +150,7 @@ public class PropertyWraper<T extends IDataEntity> {
 		@Override
 		public void set(double pValue) {
 			super.set(pValue);
-			data.setField(fieldName, new BigDecimal(pValue), isChanged);
+			PropertyWrapper.this.setField(fieldName, BigDecimal.valueOf(pValue), isChanged);
 		}
 	}
 
@@ -182,7 +182,7 @@ public class PropertyWraper<T extends IDataEntity> {
 		@Override
 		public void set(int pValue) {
 			super.set(pValue);
-			data.setField(fieldName, pValue, isChanged);
+			PropertyWrapper.this.setField(fieldName, pValue, isChanged);
 		}
 	}
 
@@ -200,10 +200,10 @@ public class PropertyWraper<T extends IDataEntity> {
 		public void setValue(LocalDate pValue) {
 			if (pValue != null) {
 				super.set(pValue);
-				data.setField(fieldName, DateTime.asDbDate(pValue), true);
+				PropertyWrapper.this.setField(fieldName, DateTime.asDbDate(pValue), true);
 			} else {
 				super.set(null);
-				data.setField(fieldName, BigDecimal.ZERO, true);
+				PropertyWrapper.this.setField(fieldName, BigDecimal.ZERO, true);
 			}
 		}
 	}
@@ -222,7 +222,7 @@ public class PropertyWraper<T extends IDataEntity> {
 		@Override
 		public void set(IReference<V> pValue) {
 			super.set(pValue);
-			data.setField(fieldName, pValue.getKey(), true);
+			PropertyWrapper.this.setField(fieldName, pValue.getKey(), true);
 		}
 
 		@Override
@@ -231,9 +231,5 @@ public class PropertyWraper<T extends IDataEntity> {
 				pValue = nullValue;
 			set(pValue);
 		}
-	}
-
-	public T getData() {
-		return data;
 	}
 }

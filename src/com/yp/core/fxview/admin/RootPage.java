@@ -7,6 +7,7 @@ import com.yp.admin.data.Commons;
 import com.yp.admin.model.CommonModel;
 import com.yp.admin.model.ProjectFuncModel;
 import com.yp.admin.model.ProjectModel;
+import com.yp.admin.model.ExportModel;
 import com.yp.core.fxview.AForm;
 
 import javafx.concurrent.Task;
@@ -21,6 +22,7 @@ public abstract class RootPage extends AForm {
 	private CommonModel commonModel;
 	private ProjectModel projectModel;
 	private ProjectFuncModel projectFuncModel;
+	private ExportModel exportModel;
 	protected List<Commons> cityList;
 	protected List<Commons> districtList;
 
@@ -52,6 +54,13 @@ public abstract class RootPage extends AForm {
 		return projectFuncModel;
 	}
 
+	public ExportModel getExportModel() {
+		if (exportModel == null) {
+			exportModel = new ExportModel();
+		}
+		return exportModel;
+	}
+
 	public List<Commons> getCityList() {
 		if (cityList == null) {
 			cityList = getCommonModel().findByParent(Commons.PARENT_ID_CITY_TR);
@@ -77,10 +86,11 @@ public abstract class RootPage extends AForm {
 			boolean hide = progres > 0.98;
 			if (hide)
 				progres = 0.0;
-			
+
 			app.getHome().progressBar.setProgress(progres);
 			app.getHome().progressBar.setVisible(!hide);
-		} else app.getHome().progressBar.setProgress(0.0);
+		} else
+			app.getHome().progressBar.setProgress(0.0);
 
 	}
 

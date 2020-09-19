@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
@@ -21,7 +22,7 @@ public class ProjectAU extends RootPage {
 	@FXML
 	private TableView<IDataEntity> tProjects;
 	@FXML
-	private TextField txtId;
+	private Label txtId;
 	@FXML
 	private TextField txtName;
 	@FXML
@@ -62,8 +63,7 @@ public class ProjectAU extends RootPage {
 				} else {
 					scmTarget.getSelectionModel().clearSelection();
 				}
-			} else {
-				de.setId(txtId.getText());
+			} else {				
 				de.setName(txtName.getText());
 				de.setDescription(txtDesc.getText());
 				de.setUrl(txtUrl.getText());

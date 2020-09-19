@@ -183,7 +183,7 @@
 								</TableColumn>
 								<TableColumn id="c5" text="%Ceptelnu">
 									<cellValueFactory>
-										<PropertyValueFactory property="mobileNu1" />
+										<PropertyValueFactory property="mobileNu2" />
 									</cellValueFactory>
 								</TableColumn>
 							</columns>
@@ -223,7 +223,7 @@
 								</TableColumn>
 								<TableColumn id="c52" text="%Ceptelnu">
 									<cellValueFactory>
-										<PropertyValueFactory property="userPhoneNu1" />
+										<PropertyValueFactory property="userPhoneNu2" />
 									</cellValueFactory>
 								</TableColumn>
 							</columns>

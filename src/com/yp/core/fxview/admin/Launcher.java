@@ -28,7 +28,7 @@ public class Launcher extends ALauncher {
 	private static final ResourceBundle configBundle;
 
 	static {
-		configBundle = ResourceBundle.getBundle("fxview.admin.Config");
+		configBundle = ResourceBundle.getBundle("admin.Config");
 	}
 
 	public static void main(String[] args) {
@@ -75,7 +75,7 @@ public class Launcher extends ALauncher {
 
 				model.executeSQLfromResourceFile(createSql);
 
-				model.transferXlsToDb("/data/common.xls", common_tables);
+				model.exportXlsToDb("/data/common.xls", common_tables);
 			} catch (Exception e) {
 				Logger.getLogger(MyLogger.NAME).log(Level.SEVERE, null, e);
 			}

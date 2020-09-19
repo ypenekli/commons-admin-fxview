@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="self" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yp.core.fxview.admin.CommonsAUL">
+<GridPane fx:id="self" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yp.core.fxview.admin.ProjectAUL">
 	<HBox prefWidth="700" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
 		<ToolBar HBox.hgrow="ALWAYS">
 			<Button disable="${controller.gosterMeKapat}" onAction="#close" text="%Kapat" />
@@ -54,7 +54,7 @@
 			</padding>
 		</MenuBar>
 	</HBox>
-	<Label text="%FrmSharedRefAUL.Header" GridPane.rowIndex="2">
+	<Label text="%FrmProjectAUL.Header" GridPane.rowIndex="2">
 		<font>
 			<Font name="System Bold" size="18.0" />
 		</font>
@@ -63,19 +63,9 @@
      <items>
        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
             <children>
-	    		<HBox alignment="bottom_left" AnchorPane.leftAnchor="0.0"
-					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">							
-					<ComboBox fx:id="cmbRoot" maxWidth="200" promptText="%FrmSharedRefAUL.Roots"  onAction="#selectRoot"/>
-					<Button defaultButton="true" onAction="#addRoot"  />
-					<padding>
-						<Insets bottom="3" left="3" right="3" top="3" />
-					</padding>
-				</HBox>
-               <TableView fx:id="tSubitems1" Style="-fx-border-width: 1;" 
-               		AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" 
-               		AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+               <TableView fx:id="tProjects" Style="-fx-border-width: 1;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
 				<columns>
-					<TableColumn  text="%Kodadi">
+					<TableColumn  text="%FrmProjectAUL.Name">
 						<cellValueFactory>
 							<PropertyValueFactory property="name" />
 						</cellValueFactory>
@@ -92,38 +82,36 @@
        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
             <children >
 	            <GridPane hgap="5" vgap="5">
-	                <Label style="-fx-font-weight: bold;" text="%Kodu" GridPane.columnIndex="0" GridPane.halignment="right" GridPane.rowIndex="2" />
-	                <Label style="-fx-font-weight: bold;-fx-text-fill: red;" text="*" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+	                <Label style="-fx-font-weight: bold;" text="%FrmProjectAUL.Id" GridPane.columnIndex="0" GridPane.halignment="right" GridPane.rowIndex="2" />	                
 					<Label text="%Ikinokta" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-					<TextField fx:id="txtId" maxWidth="80" GridPane.columnIndex="3" GridPane.rowIndex="2" disable="true"/>
+					<Label fx:id="txtId"  GridPane.columnIndex="3" GridPane.rowIndex="2" />
 						
-					<Label style="-fx-font-weight: bold;" text="%Kodadi" GridPane.columnIndex="0" GridPane.halignment="right" GridPane.rowIndex="3" />
+					<Label style="-fx-font-weight: bold;" text="%FrmProjectAUL.Name" GridPane.columnIndex="0" GridPane.halignment="right" GridPane.rowIndex="3" />
 					<Label style="-fx-font-weight: bold;-fx-text-fill: red;" text="*" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 					<Label text="%Ikinokta" GridPane.columnIndex="2" GridPane.rowIndex="3" />
 					<TextField fx:id="txtName" prefWidth="100" GridPane.columnIndex="3" GridPane.rowIndex="3" />
 					
-					<Label style="-fx-font-weight: bold;" text="%Kisaadi" GridPane.columnIndex="0" GridPane.halignment="right" GridPane.rowIndex="4" />
+					<Label style="-fx-font-weight: bold;" text="%FrmProjectAUL.Url" GridPane.columnIndex="0" GridPane.halignment="right" GridPane.rowIndex="4" />
 					<Label style="-fx-font-weight: bold;-fx-text-fill: red;" text="*" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 					<Label text="%Ikinokta" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-					<TextField fx:id="txtShortname" prefWidth="100" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+					<TextField fx:id="txtUrl" prefWidth="100" GridPane.columnIndex="3" GridPane.rowIndex="4" />
 					
-					<Label style="-fx-font-weight: bold;" text="%Aciklama" GridPane.columnIndex="0" GridPane.halignment="right" GridPane.rowIndex="5" />
+					<Label style="-fx-font-weight: bold;" text="%FrmProjectAUL.Target" GridPane.columnIndex="0" GridPane.halignment="right" GridPane.rowIndex="5" />
 					<Label style="-fx-font-weight: bold;-fx-text-fill: red;" text="*" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 					<Label text="%Ikinokta" GridPane.columnIndex="2" GridPane.rowIndex="5" />					
-					<TextField fx:id="txtDef" prefWidth="100" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+					<ComboBox fx:id="scmTarget" maxWidth="200" promptText="%FrmProjectAUL.Sell.Target" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                  
                  
 	                <Button 	GridPane.columnIndex="0" GridPane.rowIndex="7"  GridPane.halignment="right"  fx:id="btnSave" defaultButton="true" onAction="#save" text="%Kaydet"  />
-	                <HBox GridPane.columnIndex="3" GridPane.rowIndex="7" spacing="10">
-						<Button fx:id="btnAddParent" onAction="#addParent"  text="%FrmProjectAUL.Add.Parent" />
-						<Button fx:id="btnAddLeaf" onAction="#addLeaf" text="%FrmProjectAUL.Add.Leaf" /> 
-						<Button fx:id="btnParent" onAction="#goUp" text="%FrmProjectAUL.GoUp" /> 
+	                <HBox GridPane.columnIndex="3" GridPane.rowIndex="7" spacing="10">						
+						<Button fx:id="btnAddFunc" onAction="#addFunc" text="%FrmProjectAUL.Add.Func" /> 
+						<Button fx:id="btnUp" onAction="#goUp" text="%FrmProjectAUL.GoUp" /> 
 				    </HBox>           
-	               <TableView fx:id="tSubitems2" Style="-fx-border-width: 1;"  GridPane.rowIndex="8" GridPane.columnSpan="4">
+	               <TableView fx:id="tSubitems" Style="-fx-border-width: 1;"  GridPane.rowIndex="8" GridPane.columnSpan="4">
 					<columns>
 					<TableColumn  text="%Kodu">
 						<cellValueFactory>
-							<PropertyValueFactory property="islvkod" />
+							<PropertyValueFactory property="id" />
 						</cellValueFactory>
 					</TableColumn>
 					<TableColumn  text="%FrmProjectAUL.FnName" minWidth="150">

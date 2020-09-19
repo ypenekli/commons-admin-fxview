@@ -1,94 +1,110 @@
 package com.yp.core.fxview.login;
 
-import com.yp.admin.data.Commons;
+import java.time.LocalDate;
+
 import com.yp.admin.data.Users;
-import com.yp.core.fxview.data.PropertyWraper;
+import com.yp.core.ref.IReference;
 import com.yp.core.tools.DateTime;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-public class Account extends PropertyWraper<Users> {
-	
-	private SimpleStringProperty password2 = new SimpleStringProperty("");
+public class Account extends Users {
+
+	private transient SimpleStringProperty password2 = new SimpleStringProperty("");
 
 	public Account(Users pUser) {
 		super(pUser);
 	}
 
 	public Account() {
-		super(new Users(-1));
+		super(-1);
 	}
-	
-	private StringProperty email;
+
+	private transient StringProperty emailProperty;
 
 	public StringProperty emailProperty() {
-		if (email == null)
-			email = new StringProperty(Users.EMAIL, data.getEmail());
-		return email;
+		if (emailProperty == null)
+			emailProperty = new SimpleStringProperty(getEmail()) {
+				@Override
+				public void set(String pValue) {
+					super.set(pValue);
+					setEmail(pValue);
+				}
+			};
+		return emailProperty;
 	}
 
-	public String getEmail() {
-		return email.get();
-	}
-
-	private StringProperty name;
+	private transient StringProperty nameProperty;
 
 	public StringProperty nameProperty() {
-		if (name == null)
-			name = new StringProperty(Users.NAME, data.getName());
-		return name;
+		if (nameProperty == null)
+			nameProperty = new SimpleStringProperty(getName()) {
+				@Override
+				public void set(String pValue) {
+					super.set(pValue);
+					setName(pValue);
+				}
+			};
+		return nameProperty;
 	}
 
-	public String getName() {
-		return name.get();
-	}
-
-	private StringProperty surname;
+	private transient StringProperty surnameProperty;
 
 	public StringProperty surnameProperty() {
-		if (surname == null)
-			surname = new StringProperty(Users.SURNAME, data.getSurname());
-		return surname;
+		if (surnameProperty == null)
+			surnameProperty = new SimpleStringProperty(getSurname()) {
+				@Override
+				public void set(String pValue) {
+					super.set(pValue);
+					setSurname(pValue);
+				}
+			};
+		return surnameProperty;
 	}
 
-	public String getSurname() {
-		return surname.get();
+	private transient ObjectProperty<IReference<Integer>> homeCityProperty;
+
+	public ObjectProperty<IReference<Integer>> homeCityProperty() {
+		if (homeCityProperty == null)
+			homeCityProperty = new SimpleObjectProperty<IReference<Integer>>(getHomeCityRef()) {
+				@Override
+				public void set(IReference<Integer> pValue) {
+					super.set(pValue);
+					setHomeCity(pValue.getKey());
+				}
+			};
+		return homeCityProperty;
 	}
 
-	private RefProperty<Integer> homeCity;
-
-	public RefProperty<Integer> homeCityProperty() {
-		if (homeCity == null)
-			homeCity = new RefProperty<>(Users.HOME_CITY, data.getHomeCityRef(), new Commons(-1));
-		return homeCity;
-	}
-
-	public String getHomeCity() {
-		return homeCity.getValue().getValue();
-	}
-
-	private StringProperty phone;
+	private transient StringProperty phoneProperty;
 
 	public StringProperty phoneProperty() {
-		if (phone == null)
-			phone = new StringProperty(Users.PHONE_NU2, data.getMobilePhoneNu());
-		return phone;
+		if (phoneProperty == null)
+			phoneProperty = new SimpleStringProperty(getMobilePhoneNu()) {
+				@Override
+				public void set(String pValue) {
+					super.set(pValue);
+					setPhoneno2(pValue);
+				}
+			};
+		return phoneProperty;
 	}
 
-	public String getPhone() {
-		return phone.get();
-	}
-
-	private StringProperty password1;
+	private transient StringProperty password1Property;
 
 	public StringProperty password1Property() {
-		if (password1 == null)
-			password1 = new StringProperty(Users.PASSWORD, data.getPassword());
-		return password1;
-	}
-
-	public String getPassword() {
-		return password1.get();
+		if (password1Property == null)
+			password1Property = new SimpleStringProperty(getPassword()) {
+				@Override
+				public void set(String pValue) {
+					super.set(pValue);
+					setPassword(pValue);
+				}
+			};
+		return password1Property;
 	}
 
 	public SimpleStringProperty password2Property() {
@@ -104,32 +120,35 @@ public class Account extends PropertyWraper<Users> {
 	}
 
 	public boolean isPasswordsDiffer() {
-		return !data.getPassword().equals(getPassword2());
+		return !getPassword().equals(getPassword2());
 	}
 
-	private DateProperty birthday;
-
-	public DateProperty birthdayProperty() {
-		if (birthday == null) {
-			birthday = new DateProperty(Users.BIRTH_DATE, DateTime.asLocalDate(data.getBirthDate()));
-		}
-		return birthday;
-	}
-
-	public String getBirthday() {
-		return DateTime.asDateTR(birthday.get());
-	}
-
-	private StringProperty address;
+	private transient StringProperty addressProperty;
 
 	public StringProperty addressProperty() {
-		if (address == null)
-			address = new StringProperty(Users.HOME_ADDRESS, data.getHomeAddress());
-		return address;
+		if (addressProperty == null)
+			addressProperty = new SimpleStringProperty(getHomeAddress()) {
+				@Override
+				public void set(String pValue) {
+					super.set(pValue);
+					setHomeAddress(pValue);
+				}
+			};
+		return addressProperty;
 	}
 
-	public String getAddress() {
-		return address.get();
+	private transient ObjectProperty<LocalDate> birthdayProperty;
+
+	public ObjectProperty<LocalDate> birthdayProperty() {
+		if (birthdayProperty == null)
+			birthdayProperty = new SimpleObjectProperty<LocalDate>(DateTime.asLocalDate(getBirthDate())) {
+				@Override
+				public void set(LocalDate pValue) {
+					super.set(pValue);
+					setBirthDateDb(DateTime.asDbDate(pValue));
+				}
+			};
+		return birthdayProperty;
 	}
 
 }

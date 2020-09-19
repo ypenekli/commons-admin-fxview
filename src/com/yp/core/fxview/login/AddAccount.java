@@ -124,7 +124,7 @@ public class AddAccount extends AForm {
 
 		case 1:
 			if (StringTool.isNull(getAccount().getName()) || StringTool.isNull(account.getSurname())
-					|| account.getBirthday() == null || StringTool.isNull(account.getPassword())
+					|| account.getBirthDate() == null || StringTool.isNull(account.getPassword())
 					|| account.isPasswordsDiffer())
 				dSnc = false;
 			break;
@@ -138,10 +138,10 @@ public class AddAccount extends AForm {
 
 	@Override
 	public void save(ActionEvent arg0) {
-		result = getUserModel().addAccount(app.getApplicationName(), getAccount().getData(), getUser());
+		result = getUserModel().addAccount(app.getApplicationName(), getAccount(), getUser());
 		message = result.getMessage();
 		if (result.isSuccess()) {
-			Users user = (Users)result.getData();
+			Users user = (Users) result.getData();
 			app.setUser(user);
 			app.showStartup();
 		}
