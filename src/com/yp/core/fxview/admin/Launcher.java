@@ -54,7 +54,7 @@ public class Launcher extends ALauncher {
 		return BaseConstants.getString(key);
 	}
 
-	protected final IDataEntity[] common_tables = new DataEntity[] { new Projects(), new ProjectFuncs(), new Groups(),
+	protected final IDataEntity[] commonTables = new DataEntity[] { new Projects(), new ProjectFuncs(), new Groups(),
 			new GroupProjectFuncs(), new Commons(), new Users(), new GroupUsers(), };
 
 	@Override
@@ -75,7 +75,7 @@ public class Launcher extends ALauncher {
 
 				model.executeSQLfromResourceFile(createSql);
 
-				model.exportXlsToDb("/data/common.xls", common_tables);
+				model.exportXlsToDb("/data/common.xls", commonTables);
 			} catch (Exception e) {
 				Logger.getLogger(MyLogger.NAME).log(Level.SEVERE, null, e);
 			}

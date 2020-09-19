@@ -10,14 +10,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.yp.admin.data.Commons;
 import com.yp.admin.data.Exports;
-import com.yp.admin.data.GroupProjectFuncs;
-import com.yp.admin.data.GroupUsers;
-import com.yp.admin.data.Groups;
-import com.yp.admin.data.ProjectFuncs;
-import com.yp.admin.data.Projects;
-import com.yp.admin.data.Users;
 import com.yp.admin.model.ExportModel;
 import com.yp.core.AModel;
 import com.yp.core.BaseConstants;
@@ -277,11 +270,6 @@ public class Config extends RootPage {
 	public void onTargetDbChanged(ActionEvent event) {
 		targetDb = cbTargetDb.getValue();
 	}
-
-	protected final Object[][] tables = new Object[][] { { "projects", new Projects() },
-			{ "project_funcs", new ProjectFuncs() }, { "groups", new Groups() },
-			{ "group_project_funcs", new GroupProjectFuncs() }, { "commons", new Commons() }, { "users", new Users() },
-			{ "group_users", new GroupUsers() } };
 
 	// Event Listener on Button[#tusVtOlustur].onAction
 	@FXML
