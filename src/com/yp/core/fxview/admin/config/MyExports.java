@@ -102,7 +102,7 @@ public class MyExports extends Exports {
 	@Override
 	public void onProceed(PHASE phase, Double progress, int count, String message) {
 		if (phase != PHASE.ENDS_ALL && phase != PHASE.FAILS_ALL) {
-			onProceed(phase, progress, count, message);
+			super.onProceed(phase, progress, count, message);
 			if (phase == PHASE.FAILS)
 				progresProperty().set(0.0);
 			else

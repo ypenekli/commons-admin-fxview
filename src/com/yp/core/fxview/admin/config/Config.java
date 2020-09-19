@@ -403,6 +403,7 @@ public class Config extends RootPage {
 			for (int dI = 0; dI < taskCount; dI++) {
 				MyExports vs = (MyExports) sorted[dI];
 				vs.setDeleteTargetTableRows(vs.deleteTargetTableRowsProperty().get());
+				vs.progresProperty().set(0.0);
 				dbExport.export(targetDb, vs, (phase, progress, count, message) -> {
 					vs.onProceed(phase, progress, count, message);
 					updateGui(phase, taskCount, message);
@@ -426,7 +427,7 @@ public class Config extends RootPage {
 		});
 		result = getExportModel().saveAtomic(addList, updateList);
 		if (result.isSuccess()) {
-			transferList.forEach(v -> v.accept());
+			transferList.forEach(MyExports::accept);
 			addMessage(BaseConstants.MESSAGE_INFO, result.getMessage());
 		} else
 			addMessage(BaseConstants.MESSAGE_WARNING, result.getMessage());
