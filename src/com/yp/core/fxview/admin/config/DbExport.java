@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.yp.admin.data.Exports;
 import com.yp.admin.model.ExportModel;
 import com.yp.core.BaseConstants;
+import com.yp.core.db.DbConnInfo;
 import com.yp.core.db.IExport;
 import com.yp.core.db.OnExportListener;
 import com.yp.core.db.OnExportListener.PHASE;
@@ -31,7 +32,7 @@ public class DbExport {
 
 	private static final String FORMATED_EXPORT_MESSAGE1 = "TABLO TOPLAMI/TAMAMLANAN :%s/%s, %s ";
 
-	public void export(MyConnInfo pTarget, Exports pVs, OnExportListener proceedListener, int maxConn) {
+	public void export(DbConnInfo pTarget, Exports pVs, OnExportListener proceedListener, int maxConn) {
 		if (pVs != null) {
 			Service<IResult<IExport>> aktar = new Service<IResult<IExport>>() {
 				@Override
