@@ -1,5 +1,6 @@
 package com.yp.core.fxview.login;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -127,19 +128,19 @@ public class LogIn extends AForm {
 								genereteRootMenu(app.getRootMenuList());
 							else
 								logIn(app.getRootMenuList().get(0));
-						} else if (BaseConstants.ERRORCODE_NO_USER.equals(res.getErrorcode())) {
+						} else if (BaseConstants.ERRORCODE_NO_USER == res.getErrorcode()) {
 							lnkAddAccount.setVisible(true);
 
 							lnkSendPwd.setVisible(false);
 							lblSendPwd.setVisible(false);
-						} else if (BaseConstants.ERRORCODE_WRONG_PASS.equals(res.getErrorcode())) {
+						} else if (BaseConstants.ERRORCODE_WRONG_PASS == res.getErrorcode()) {
 							lnkAddAccount.setVisible(false);
 
 							lnkSendPwd.setVisible(true);
 							lblSendPwd.setVisible(true);
 						}
 					}
-				} catch (UnknownHostException e) {
+				} catch (IOException e) {
 					Logger.getLogger(MyLogger.NAME).log(Level.SEVERE, e.getMessage(), e);
 				}
 			}

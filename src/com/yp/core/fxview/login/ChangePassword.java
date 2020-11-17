@@ -1,10 +1,14 @@
 package com.yp.core.fxview.login;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.yp.admin.data.Users;
 import com.yp.core.fxview.AForm;
+import com.yp.core.log.MyLogger;
 import com.yp.core.tools.StringTool;
 import com.yp.core.user.IUser;
 
@@ -31,9 +35,12 @@ public class ChangePassword extends AForm {
 		lbMessage.setText("");
 		if (!StringTool.isNull(txtPassword.getText()) && !StringTool.isNull(txtNewPassword.getText())
 				&& !StringTool.isNull(txtNewPasswordConfirmed.getText())) {
-
-			result = getUserModel().changePassword(getUser().getEmail(), txtPassword.getText(),
-					txtNewPassword.getText(), txtNewPasswordConfirmed.getText(), getUser(), getClientIP());
+			try {
+				result = getUserModel().changePassword(getUser().getEmail(), txtPassword.getText(),
+						txtNewPassword.getText(), txtNewPasswordConfirmed.getText(), getUser(), getClientIP());
+			} catch (IOException e) {
+				Logger.getLogger(MyLogger.NAME).log(Level.SEVERE, e.getMessage(), e);
+			}
 
 			if (result != null) {
 				lbMessage.setText(result.getMessage());
