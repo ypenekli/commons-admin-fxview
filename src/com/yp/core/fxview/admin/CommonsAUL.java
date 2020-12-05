@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.yp.admin.data.Commons;
+import com.yp.admin.data.Common;
 import com.yp.core.BaseConstants;
 import com.yp.core.entity.IDataEntity;
 
@@ -37,7 +37,7 @@ public class CommonsAUL extends RootPage {
 	@FXML
 	private TextField txtDef;
 	@FXML
-	private ComboBox<Commons> cmbRoot;
+	private ComboBox<Common> cmbRoot;
 	@FXML
 	private Button btnSave;
 	@FXML
@@ -47,15 +47,15 @@ public class CommonsAUL extends RootPage {
 	@FXML
 	private Button btnParent;
 
-	private Commons selectedRoot;
-	private List<Commons> rootSubitems;
-	private List<Commons> subitems1;
-	private List<Commons> subitems2;
+	private Common selectedRoot;
+	private List<Common> rootSubitems;
+	private List<Common> subitems1;
+	private List<Common> subitems2;
 	private Deque<IDataEntity> refNode;
 
 	public void initialize(final URL location, final ResourceBundle resources) {
 		refNode = new LinkedList<>();
-		selectedRoot = new Commons(0);
+		selectedRoot = new Common(0);
 		readRoots();
 		buildSubitems1Table();
 		buildSubitems2Table();
@@ -75,7 +75,7 @@ public class CommonsAUL extends RootPage {
 
 	public void synchronize(final boolean pToForm, final Object[] pAdditionalParams) {
 		if (dataEntity != null) {
-			final Commons de = (Commons) dataEntity;
+			final Common de = (Common) dataEntity;
 			if (pToForm) {
 				txtId.setText(de.getId().toString());
 				txtName.setText(de.getName());
@@ -161,10 +161,10 @@ public class CommonsAUL extends RootPage {
 	@Override
 	public void save(final ActionEvent arg0) {
 		synchronize(false, null);
-		result = getCommonModel().save((Commons) dataEntity, getUser());
+		result = getCommonModel().save((Common) dataEntity, getUser());
 		if (result.isSuccess()) {
 			addMessage(BaseConstants.MESSAGE_INFO, result.getMessage());
-			if (((Commons) dataEntity).getLevel() > 2) {
+			if (((Common) dataEntity).getLevel() > 2) {
 				goUp(arg0);
 			} else {
 				selectRoot(arg0);
@@ -177,8 +177,8 @@ public class CommonsAUL extends RootPage {
 	}
 
 	public void addRoot(final ActionEvent arg0) {
-		add(Commons.root, this.rootSubitems, true);
-		selectedRoot = (Commons) dataEntity;
+		add(Common.root, this.rootSubitems, true);
+		selectedRoot = (Common) dataEntity;
 	}
 
 	@Override
@@ -187,14 +187,14 @@ public class CommonsAUL extends RootPage {
 	}
 
 	public void addParent(final ActionEvent arg0) {
-		add((Commons) dataEntity, subitems2, false);
+		add((Common) dataEntity, subitems2, false);
 	}
 
 	public void addLeaf(final ActionEvent arg0) {
-		add((Commons) dataEntity, subitems2, true);
+		add((Common) dataEntity, subitems2, true);
 	}
 
-	private void add(final Commons pParent, final List<Commons> pSubitems, final boolean pIsLeaf) {
+	private void add(final Common pParent, final List<Common> pSubitems, final boolean pIsLeaf) {
 		if (pParent != null) {
 			int size = 0;
 			if (!BaseConstants.isEmpty(pSubitems))

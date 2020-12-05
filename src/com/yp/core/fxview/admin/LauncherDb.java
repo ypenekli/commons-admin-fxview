@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import com.yp.admin.data.Exports;
-import com.yp.admin.data.Groups;
+import com.yp.admin.data.Export;
+import com.yp.admin.data.Group;
 import com.yp.admin.model.ExportModel;
 import com.yp.core.BaseConstants;
 import com.yp.core.db.DbConnInfo;
@@ -66,14 +66,14 @@ public class LauncherDb extends ALauncher {
 			
 			String[] sourceSchemaList = sourceSchema.split(BaseConstants.COMMA);
 			String[] targetSchemaList = targetSchema.split(BaseConstants.COMMA);
-			List<Exports> taskList = new ArrayList<>();
+			List<Export> taskList = new ArrayList<>();
 			for (int dI = 0; dI < targetSchemaList.length; dI++) {
 				taskList.addAll(model.getExportList(sourceSchemaList[dI], targetSchemaList[dI]));
 			}
 			if (!BaseConstants.isEmpty(taskList)) {
 				int taskCount = taskList.size();
 				DbExport dbexport = new DbExport(taskCount);
-				for (Exports vs : taskList) {
+				for (Export vs : taskList) {
 					vs.setDeleteTargetTableRows(true);
 					dbexport.export(target, vs, LauncherDb::updateProgress, maxPoolSize);
 				}
@@ -82,7 +82,7 @@ public class LauncherDb extends ALauncher {
 	}
 
 	@Override
-	protected List<Groups> findRootMenuList(IUser pUser) {
+	protected List<Group> findRootMenuList(IUser pUser) {
 		return null;
 	}
 

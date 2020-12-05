@@ -3,7 +3,7 @@ package com.yp.core.fxview.admin;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.yp.admin.data.Projects;
+import com.yp.admin.data.Project;
 import com.yp.admin.model.ProjectModel;
 import com.yp.core.BaseConstants;
 import com.yp.core.entity.IDataEntity;
@@ -49,7 +49,7 @@ public class ProjectAU extends RootPage {
 
 	public void synchronize(final boolean pToForm, final Object[] pAdditionalParams) {
 		if (dataEntity != null) {
-			final Projects de = (Projects) dataEntity;
+			final Project de = (Project) dataEntity;
 			if (pToForm) {
 				txtId.setText(de.getId());
 				txtName.setText(de.getName());
@@ -79,7 +79,7 @@ public class ProjectAU extends RootPage {
 	@Override
 	public void save(final ActionEvent arg0) {
 		synchronize(false, null);
-		result = getProjectModel().save((Projects) dataEntity, getUser());
+		result = getProjectModel().save((Project) dataEntity, getUser());
 		if (result.isSuccess()) {
 			addMessage(BaseConstants.MESSAGE_INFO, result.getMessage());
 		} else {

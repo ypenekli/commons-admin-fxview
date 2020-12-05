@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.yp.admin.Constants;
-import com.yp.admin.data.Users;
+import com.yp.admin.data.User;
 import com.yp.core.entity.IDataEntity;
 
 import javafx.event.ActionEvent;
@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
 
 public class UsersList extends RootPage {
 	@FXML
-	private TableView<Users> tUsers;
+	private TableView<User> tUsers;
 	@FXML
 	private TextField txtName;
 
@@ -34,7 +34,7 @@ public class UsersList extends RootPage {
 	public void synchronize(final boolean pToForm, final Object[] pAdditionalParams) {
 	}
 
-	private void showDialog(final Users pUser) {
+	private void showDialog(final User pUser) {
 		showModal(this.id, ".UserAU", Constants.getString("Users.Header"), pUser, null, false);
 	}
 
@@ -50,12 +50,12 @@ public class UsersList extends RootPage {
 		removeMenuItem.setOnAction(this::save);
 
 		tUsers.setRowFactory(tv -> {
-			final TableRow<Users> row = new TableRow<>();
+			final TableRow<User> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
 				if (!row.isEmpty()) {
 					dataEntity = row.getItem();
 					if (event.getClickCount() == 2) {
-						showDialog((Users) dataEntity);
+						showDialog((User) dataEntity);
 					}
 				}
 			});
@@ -69,7 +69,7 @@ public class UsersList extends RootPage {
 	}
 
 	public void find(final ActionEvent arg0) {
-		final List<Users> userList = getUserModel().findByName(txtName.getText());
+		final List<User> userList = getUserModel().findByName(txtName.getText());
 		refresh(tUsers, userList, (IDataEntity) null);
 	}
 
@@ -79,12 +79,12 @@ public class UsersList extends RootPage {
 	}
 
 	public void add(final ActionEvent arg0) {
-		showDialog((Users) (dataEntity = new Users(-1)));
+		showDialog((User) (dataEntity = new User(-1)));
 	}
 
 	public void update(final ActionEvent arg0) {
 		dataEntity = tUsers.getSelectionModel().getSelectedItem();
-		showDialog((Users) dataEntity);
+		showDialog((User) dataEntity);
 	}
 
 	static void access$1(final UsersList list, final IDataEntity dataEntity) {

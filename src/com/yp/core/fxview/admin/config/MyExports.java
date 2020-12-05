@@ -1,6 +1,6 @@
 package com.yp.core.fxview.admin.config;
 
-import com.yp.admin.data.Exports;
+import com.yp.admin.data.Export;
 import com.yp.core.db.OnExportListener.PHASE;
 
 import javafx.beans.property.BooleanProperty;
@@ -11,7 +11,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class MyExports extends Exports {
+public class MyExports extends Export {
 
 	private static final long serialVersionUID = -8489243477921541495L;
 
@@ -19,7 +19,7 @@ public class MyExports extends Exports {
 		super();
 	}
 
-	public MyExports(Exports pDe) {
+	public MyExports(Export pDe) {
 		load(pDe);
 	}
 

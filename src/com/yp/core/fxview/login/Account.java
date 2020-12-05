@@ -2,7 +2,7 @@ package com.yp.core.fxview.login;
 
 import java.time.LocalDate;
 
-import com.yp.admin.data.Users;
+import com.yp.admin.data.User;
 import com.yp.core.ref.IReference;
 import com.yp.core.tools.DateTime;
 
@@ -11,11 +11,11 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Account extends Users {
+public class Account extends User {
 
 	private transient SimpleStringProperty password2 = new SimpleStringProperty("");
 
-	public Account(Users pUser) {
+	public Account(User pUser) {
 		super(pUser);
 	}
 

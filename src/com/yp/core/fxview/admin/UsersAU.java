@@ -5,8 +5,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.yp.admin.data.Commons;
-import com.yp.admin.data.Users;
+import com.yp.admin.data.Common;
+import com.yp.admin.data.User;
 import com.yp.core.BaseConstants;
 import com.yp.core.tools.DateTime;
 import com.yp.core.tools.StringTool;
@@ -32,11 +32,11 @@ public class UsersAU extends RootPage {
 	@FXML
 	private DatePicker txtBirthdate;
 	@FXML
-	private ComboBox<Commons> cbTitle;
+	private ComboBox<Common> cbTitle;
 	@FXML
-	private ComboBox<Commons> cbProfession;
+	private ComboBox<Common> cbProfession;
 	@FXML
-	private ComboBox<Commons> cbPosition;
+	private ComboBox<Common> cbPosition;
 	@FXML
 	private DatePicker txtCheckinDate;
 	@FXML
@@ -52,20 +52,20 @@ public class UsersAU extends RootPage {
 	@FXML
 	private TextArea txtAddress;
 	@FXML
-	private ComboBox<Commons> cbHomeCity;
+	private ComboBox<Common> cbHomeCity;
 	@FXML
 	private Button btnSave;
 	@FXML
 	private Button btnCancel;
-	protected List<Commons> positionList;
-	protected List<Commons> titleList;
-	protected List<Commons> professionList;
+	protected List<Common> positionList;
+	protected List<Common> titleList;
+	protected List<Common> professionList;
 
 	public void fillRefrences() {
-		cityList = getCommonModel().findByParent(Commons.PARENT_ID_CITY_TR);
-		positionList = getCommonModel().findByParent(Commons.PARENT_ID_POSITION);
-		titleList = getCommonModel().findByParent(Commons.PARENT_ID_TITLE);
-		professionList = getCommonModel().findByParent(Commons.PARENT_ID_PROFESSION);
+		cityList = getCommonModel().findByParent(Common.PARENT_ID_CITY_TR);
+		positionList = getCommonModel().findByParent(Common.PARENT_ID_POSITION);
+		titleList = getCommonModel().findByParent(Common.PARENT_ID_TITLE);
+		professionList = getCommonModel().findByParent(Common.PARENT_ID_PROFESSION);
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {
@@ -81,7 +81,7 @@ public class UsersAU extends RootPage {
 	}
 
 	public void synchronize(boolean pToForm, Object[] pAdditionalParams) {
-		Users user = (Users) dataEntity;
+		User user = (User) dataEntity;
 		if (user != null) {
 			if (pToForm) {
 				txtName.setText(user.getName());
@@ -95,25 +95,25 @@ public class UsersAU extends RootPage {
 				txtSurname.setText(user.getSurname());
 				txtCitizenshipNu.setText(StringTool.getString(user.getCitizenshipNu(), BigDecimal.ZERO));
 				if (!user.isHomeCityNull()) {
-					cbHomeCity.getSelectionModel().select((Commons) user.getHomeCityRef());
+					cbHomeCity.getSelectionModel().select((Common) user.getHomeCityRef());
 				} else {
 					cbHomeCity.getSelectionModel().clearSelection();
 				}
 
 				if (!user.isPositionNull()) {
-					cbPosition.getSelectionModel().select((Commons) user.getPositionRef());
+					cbPosition.getSelectionModel().select((Common) user.getPositionRef());
 				} else {
 					cbPosition.getSelectionModel().clearSelection();
 				}
 
 				if (!user.isProfessionNull()) {
-					cbProfession.getSelectionModel().select((Commons) user.getProfessionRef());
+					cbProfession.getSelectionModel().select((Common) user.getProfessionRef());
 				} else {
 					cbProfession.getSelectionModel().clearSelection();
 				}
 
 				if (!user.isTitleNull()) {
-					cbTitle.getSelectionModel().select((Commons) user.getTitleRef());
+					cbTitle.getSelectionModel().select((Common) user.getTitleRef());
 				} else {
 					cbTitle.getSelectionModel().clearSelection();
 				}
@@ -164,7 +164,7 @@ public class UsersAU extends RootPage {
 	}
 
 	public void add(ActionEvent arg0) {
-		dataEntity = new Users(-1);
+		dataEntity = new User(-1);
 		synchronize(true, (Object[]) null);
 	}
 

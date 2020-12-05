@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.yp.admin.data.Exports;
+import com.yp.admin.data.Export;
 import com.yp.admin.model.ExportModel;
 import com.yp.core.AModel;
 import com.yp.core.BaseConstants;
@@ -366,12 +366,12 @@ public class Config extends RootPage {
 	public void delete(ActionEvent event) {
 		List<MyExports> selection = tListe.getSelectionModel().getSelectedItems();
 		if (!BaseConstants.isEmpty(selection)) {
-			List<Exports> list = new ArrayList<>();
+			List<Export> list = new ArrayList<>();
 			selection.forEach(e -> {
 				e.delete();
 				list.add(e);
 			});
-			IResult<List<Exports>> res = getExportModel().saveAll(list);
+			IResult<List<Export>> res = getExportModel().saveAll(list);
 			if (res.isSuccess())
 				refresh(event);
 		}
@@ -440,7 +440,7 @@ public class Config extends RootPage {
 
 	@SuppressWarnings({ "unchecked" })
 	public void onFindDbTables(ActionEvent event) {
-		Exports transfer = new Exports(txtKynSema.getText(), txtHdfSema.getText(), "", "");
+		Export transfer = new Export(txtKynSema.getText(), txtHdfSema.getText(), "", "");
 		AForm dFrmIslem = showDialog(".DbTables", BaseConstants.getString("FrmTabloSec.etkBaslik"), transfer, null,
 				false);
 		result = dFrmIslem.getResult();
@@ -461,7 +461,7 @@ public class Config extends RootPage {
 	public void refresh(ActionEvent arg0) {
 		tListe.setItems(null);
 		transferList.clear();
-		List<Exports> list1 = getExportModel().getExportList(txtKynSema.getText(), txtHdfSema.getText());
+		List<Export> list1 = getExportModel().getExportList(txtKynSema.getText(), txtHdfSema.getText());
 		if (list1 != null) {
 			transferList.addAll((List) AModel.load(list1, MyExports.class));
 		}

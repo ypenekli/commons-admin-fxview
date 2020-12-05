@@ -3,7 +3,7 @@ package com.yp.core.fxview.admin;
 import java.util.List;
 
 import com.yp.admin.Constants;
-import com.yp.admin.data.Commons;
+import com.yp.admin.data.Common;
 import com.yp.admin.model.CommonModel;
 import com.yp.admin.model.ProjectFuncModel;
 import com.yp.admin.model.ProjectModel;
@@ -23,8 +23,8 @@ public abstract class RootPage extends AForm {
 	private ProjectModel projectModel;
 	private ProjectFuncModel projectFuncModel;
 	private ExportModel exportModel;
-	protected List<Commons> cityList;
-	protected List<Commons> districtList;
+	protected List<Common> cityList;
+	protected List<Common> districtList;
 
 	static {
 		ADD_NEW = Constants.getString("Addnew");
@@ -61,9 +61,9 @@ public abstract class RootPage extends AForm {
 		return exportModel;
 	}
 
-	public List<Commons> getCityList() {
+	public List<Common> getCityList() {
 		if (cityList == null) {
-			cityList = getCommonModel().findByParent(Commons.PARENT_ID_CITY_TR);
+			cityList = getCommonModel().findByParent(Common.PARENT_ID_CITY_TR);
 		}
 		return cityList;
 	}

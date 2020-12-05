@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.yp.admin.data.Exports;
+import com.yp.admin.data.Export;
 import com.yp.admin.model.ExportModel;
 import com.yp.core.BaseConstants;
 import com.yp.core.db.DbConnInfo;
@@ -32,7 +32,7 @@ public class DbExport {
 
 	private static final String FORMATED_EXPORT_MESSAGE1 = "TABLO TOPLAMI/TAMAMLANAN :%s/%s, %s ";
 
-	public void export(DbConnInfo pTarget, Exports pVs, OnExportListener proceedListener, int maxConn) {
+	public void export(DbConnInfo pTarget, Export pVs, OnExportListener proceedListener, int maxConn) {
 		if (pVs != null) {
 			Service<IResult<IExport>> aktar = new Service<IResult<IExport>>() {
 				@Override
@@ -83,15 +83,15 @@ public class DbExport {
 		}
 	}
 
-	private synchronized void processThread(Exports pVs, Service<IResult<IExport>> aktar, int maxConn) {
+	private synchronized void processThread(Export pVs, Service<IResult<IExport>> aktar, int maxConn) {
 		exports.put(pVs.getExportId(), aktar);
 		if (exports.size() < maxConn)
 			aktar.start();
 	}
 
-	public void cancelExport(List<Exports> list) {
+	public void cancelExport(List<Export> list) {
 		if (!BaseConstants.isEmpty(list)) {
-			for (Exports vs : list) {
+			for (Export vs : list) {
 				Service<IResult<IExport>> s = exports.get(vs.getExportId());
 				if (s != null && s.isRunning())
 					s.cancel();

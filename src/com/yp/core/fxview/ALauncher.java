@@ -14,8 +14,8 @@ import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
 
-import com.yp.admin.data.Groups;
-import com.yp.admin.data.ProjectFuncs;
+import com.yp.admin.data.Group;
+import com.yp.admin.data.ProjectFunc;
 import com.yp.core.BaseConstants;
 import com.yp.core.entity.IDataEntity;
 import com.yp.core.entity.IResult;
@@ -55,8 +55,8 @@ public abstract class ALauncher extends Application {
 	// public HostServices HostService;
 
 	protected IUser user;
-	protected List<Groups> rootMenuList;
-	protected List<ProjectFuncs> menuList;
+	protected List<Group> rootMenuList;
+	protected List<ProjectFunc> menuList;
 	protected List<IDataEntity> dataList;
 
 	protected Map<String, Pane> Forms;
@@ -187,7 +187,7 @@ public abstract class ALauncher extends Application {
 		return dSnc;
 	}
 
-	public boolean checkApplicationConfig(Groups pRoot) {
+	public boolean checkApplicationConfig(Group pRoot) {
 		logger.log(Level.INFO, "Check application config..");
 		return true;
 	}
@@ -196,7 +196,7 @@ public abstract class ALauncher extends Application {
 		logger.log(Level.INFO, "Check application release..");
 	}
 
-	protected abstract List<Groups> findRootMenuList(IUser pUser);
+	protected abstract List<Group> findRootMenuList(IUser pUser);
 
 	public Stage getPrimaryStage() {
 		return primaryStage;
@@ -288,15 +288,15 @@ public abstract class ALauncher extends Application {
 		return getStringConstant("Application.Home.File.Name");
 	}
 
-	public List<ProjectFuncs> getMenuList() {
+	public List<ProjectFunc> getMenuList() {
 		return menuList;
 	}
 
-	public List<Groups> getRootMenuList() {
+	public List<Group> getRootMenuList() {
 		return rootMenuList;
 	}
 
-	public void setMenuList(final List<ProjectFuncs> pMenuList) {
+	public void setMenuList(final List<ProjectFunc> pMenuList) {
 		menuList = pMenuList;
 		Pane dP = (Pane) getPrimaryStage().getScene().getRoot();
 		dP.getChildren().clear();

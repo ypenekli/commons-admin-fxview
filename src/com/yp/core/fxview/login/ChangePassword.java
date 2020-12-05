@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.yp.admin.data.Users;
+import com.yp.admin.data.User;
 import com.yp.core.fxview.AForm;
 import com.yp.core.log.MyLogger;
 import com.yp.core.tools.StringTool;
@@ -51,7 +51,7 @@ public class ChangePassword extends AForm {
 	@Override
 	public IUser getUser() {
 		if (dataEntity == null)
-			dataEntity = new Users();
+			dataEntity = new User();
 		return (IUser) dataEntity;
 	}
 

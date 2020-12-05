@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.yp.admin.data.Exports;
+import com.yp.admin.data.Export;
 import com.yp.core.BaseConstants;
 import com.yp.core.entity.IDataEntity;
 import com.yp.core.entity.Result;
@@ -28,8 +28,8 @@ public class DbTableList extends RootPage {
 
 	private void findDbTables() {
 		if (dataEntity != null) {
-			Exports tf = (Exports) dataEntity;
-			List<Exports> tableList = getExportModel().findDbTables(tf.getSourceSchema());
+			Export tf = (Export) dataEntity;
+			List<Export> tableList = getExportModel().findDbTables(tf.getSourceSchema());
 			if (!BaseConstants.isEmpty(tableList)) {
 				tableList.forEach(de -> de.setTargetSchema(tf.getTargetSchema()));
 				refresh(tListe, tableList);

@@ -9,8 +9,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.yp.admin.data.Groups;
-import com.yp.admin.data.Users;
+import com.yp.admin.data.Group;
+import com.yp.admin.data.User;
 import com.yp.admin.model.ProjectFuncModel;
 import com.yp.core.BaseConstants;
 import com.yp.core.entity.IResult;
@@ -65,9 +65,9 @@ public class LogIn extends AForm {
 		}
 	}
 
-	private void genereteRootMenu(List<Groups> pRootMenuList) {
+	private void genereteRootMenu(List<Group> pRootMenuList) {
 		if (pRootMenuList != null) {
-			for (Groups root : pRootMenuList) {
+			for (Group root : pRootMenuList) {
 				HBox box = new HBox();
 				Hyperlink hRoot = new Hyperlink(root.getMenuLabel());
 				hRoot.setTooltip(new Tooltip(root.getMenuTooltip()));
@@ -86,9 +86,9 @@ public class LogIn extends AForm {
 
 	}
 
-	private void logIn(Groups pRoot) {
+	private void logIn(Group pRoot) {
 		if (app.checkApplicationConfig(pRoot))
-			((Users) app.getUser()).setGroupId(pRoot.getId());
+			((User) app.getUser()).setGroupId(pRoot.getId());
 		app.setMenuList(new ProjectFuncModel().findGroupProjectFuncs(pRoot.getId(), pRoot.getProjectId()));
 
 		app.showStartup();
@@ -169,7 +169,7 @@ public class LogIn extends AForm {
 
 	public void sendPassword(ActionEvent arg0) {
 		System.out.println("sendpassword");
-		Users userTo = new Users();
+		User userTo = new User();
 		userTo.setEmail(txtUser.getText());
 		userTo.accept();
 		IResult<String> res = getUserModel().sendPasswordMail(app.getApplicationName(), userTo, null);

@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.yp.admin.data.GroupUsers;
-import com.yp.admin.data.Groups;
-import com.yp.admin.data.ProjectFuncs;
-import com.yp.admin.data.Users;
+import com.yp.admin.data.GroupUser;
+import com.yp.admin.data.Group;
+import com.yp.admin.data.ProjectFunc;
+import com.yp.admin.data.User;
 import com.yp.core.BaseConstants;
 import com.yp.core.entity.IDataEntity;
 import com.yp.core.fxview.AForm;
@@ -37,9 +37,9 @@ import javafx.scene.input.TransferMode;
 
 public class GroupList extends RootPage {
 	@FXML
-	private TableView<Users> tUsers;
+	private TableView<User> tUsers;
 	@FXML
-	private TableView<GroupUsers> tUsers2;
+	private TableView<GroupUser> tUsers2;
 	@FXML
 	private TextField txtName;
 	@FXML
@@ -59,7 +59,7 @@ public class GroupList extends RootPage {
 	private TreeItem<ITree<?>> selectedTreeItem;
 	private ITree<?> selectedItem;
 	private IUser selectedUser;
-	private GroupUsers selectedGroupUser;
+	private GroupUser selectedGroupUser;
 	private MenuItem deleteGroupFnMenuItem;
 
 	public void initialize(final URL location, final ResourceBundle resources) {
@@ -79,20 +79,20 @@ public class GroupList extends RootPage {
 			findProjectFns();
 			findGroupFns();
 			findGroupUsers();
-			deleteGroupFnMenuItem.setDisable((boolean) ((Groups) this.dataEntity).isAdmin());
+			deleteGroupFnMenuItem.setDisable((boolean) ((Group) this.dataEntity).isAdmin());
 		}
 	}
 
 	@Override
 	public void refresh(final ActionEvent arg0) {
-		List<Groups> groupList = getGroupModel().findGroupList(getUser().getId());
+		List<Group> groupList = getGroupModel().findGroupList(getUser().getId());
 		refresh(tGroups, groupList, (IDataEntity) null);
 	}
 
 	private void findProjectFns() {
-		final Groups group = (Groups) dataEntity;
+		final Group group = (Group) dataEntity;
 		if (group != null) {
-			List<ProjectFuncs> projectTree = getProjectFuncModel().findUserProjectFuncs(getUser().getId(), group.getProjectId());
+			List<ProjectFunc> projectTree = getProjectFuncModel().findUserProjectFuncs(getUser().getId(), group.getProjectId());
 			if (projectTree != null) {
 				trProjectSubitems.setRoot(TreeModel.buildTreeNode(projectTree, 0));
 				trProjectSubitems.getRoot().setExpanded(true);
@@ -101,9 +101,9 @@ public class GroupList extends RootPage {
 	}
 
 	private void findGroupFns() {
-		final Groups group = (Groups) dataEntity;
+		final Group group = (Group) dataEntity;
 		if (group != null) {
-			List<ProjectFuncs> groupTree = getProjectFuncModel().findGroupProjectFuncs(group.getId(), group.getProjectId());
+			List<ProjectFunc> groupTree = getProjectFuncModel().findGroupProjectFuncs(group.getId(), group.getProjectId());
 			if (groupTree != null) {
 				trGroupSubitems.setRoot(TreeModel.buildTreeNode(groupTree, 0));
 				trGroupSubitems.getRoot().setExpanded(true);
@@ -177,7 +177,7 @@ public class GroupList extends RootPage {
 
 	@Override
 	public void add(final ActionEvent arg0) {
-		dataEntity = new Groups(-1);
+		dataEntity = new Group(-1);
 		showGroup(arg0);
 	}
 
@@ -249,7 +249,7 @@ public class GroupList extends RootPage {
 		if (selectedTreeItem != null && this.selectedTreeItem.getParent() != null) {
 			selectedItem = selectedTreeItem.getValue();
 			final String[] adds = getSellection(selectedTreeItem, true);
-			getGroupModel().addFnToGroup(((Groups) dataEntity).getId(), adds, this.getUser(), getClientIP());
+			getGroupModel().addFnToGroup(((Group) dataEntity).getId(), adds, this.getUser(), getClientIP());
 			findGroupFns();
 			expandSelection(trGroupSubitems.getRoot(), selectedItem);
 		}
@@ -260,7 +260,7 @@ public class GroupList extends RootPage {
 		if (this.selectedTreeItem != null && this.selectedTreeItem.getParent() != null) {
 			ITree<?> selectedParent = selectedTreeItem.getParent().getValue();
 			final String[] deletes = getSellection(selectedTreeItem, false);
-			getGroupModel().deleteFnFromGroup(((Groups) dataEntity).getId(), deletes, getUser(), getClientIP());
+			getGroupModel().deleteFnFromGroup(((Group) dataEntity).getId(), deletes, getUser(), getClientIP());
 			findGroupFns();
 			expandSelection(trGroupSubitems.getRoot(), selectedParent);
 		}
@@ -279,14 +279,14 @@ public class GroupList extends RootPage {
 
 	public void findUsers(final ActionEvent arg0) {
 		if (dataEntity != null) {
-			final List<Users> userList = getUserModel().findByName(txtName.getText());
+			final List<User> userList = getUserModel().findByName(txtName.getText());
 			refresh(tUsers, userList, (IDataEntity) null);
 		}
 	}
 
 	public void findGroupUsers() {
 		if (dataEntity != null) {
-			final List<IDataEntity> userList = getGroupModel().findGroupUsers(((Groups) dataEntity).getId());
+			final List<IDataEntity> userList = getGroupModel().findGroupUsers(((Group) dataEntity).getId());
 			refresh(tUsers2, userList, (IDataEntity) null);
 		}
 	}
@@ -342,7 +342,7 @@ public class GroupList extends RootPage {
 		selectedUser = tUsers.getSelectionModel().getSelectedItem();
 		if (selectedUser != null) {
 			final Integer[] usersToAdd = { selectedUser.getId() };
-			getGroupModel().addUserToGroup(((Groups) dataEntity).getId(), usersToAdd, getUser(), getClientIP());
+			getGroupModel().addUserToGroup(((Group) dataEntity).getId(), usersToAdd, getUser(), getClientIP());
 			findGroupUsers();
 		}
 	}
@@ -351,7 +351,7 @@ public class GroupList extends RootPage {
 		selectedGroupUser = tUsers2.getSelectionModel().getSelectedItem();
 		if (selectedGroupUser != null) {
 			final Integer[] usersToDelete = { selectedGroupUser.getUserId() };
-			getGroupModel().deleteUserFromGroup(((Groups) dataEntity).getId(), usersToDelete, getUser(), getClientIP());
+			getGroupModel().deleteUserFromGroup(((Group) dataEntity).getId(), usersToDelete, getUser(), getClientIP());
 			findGroupUsers();
 		}
 	}

@@ -6,13 +6,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.yp.admin.Constants;
-import com.yp.admin.data.Commons;
-import com.yp.admin.data.GroupProjectFuncs;
-import com.yp.admin.data.GroupUsers;
-import com.yp.admin.data.Groups;
-import com.yp.admin.data.ProjectFuncs;
-import com.yp.admin.data.Projects;
-import com.yp.admin.data.Users;
+import com.yp.admin.data.Common;
+import com.yp.admin.data.GroupProjectFunc;
+import com.yp.admin.data.GroupUser;
+import com.yp.admin.data.Group;
+import com.yp.admin.data.ProjectFunc;
+import com.yp.admin.data.Project;
+import com.yp.admin.data.User;
 import com.yp.admin.model.GroupModel;
 import com.yp.admin.model.UserModel;
 import com.yp.core.BaseConstants;
@@ -36,7 +36,7 @@ public class Launcher extends ALauncher {
 	}
 
 	@Override
-	protected List<Groups> findRootMenuList(IUser pUser) {
+	protected List<Group> findRootMenuList(IUser pUser) {
 		return new GroupModel().findGroupList(pUser.getId(), getApplicationId());
 	}
 
@@ -54,8 +54,8 @@ public class Launcher extends ALauncher {
 		return BaseConstants.getString(key);
 	}
 
-	protected final IDataEntity[] commonTables = new DataEntity[] { new Projects(), new ProjectFuncs(), new Groups(),
-			new GroupProjectFuncs(), new Commons(), new Users(), new GroupUsers(), };
+	protected final IDataEntity[] commonTables = new DataEntity[] { new Project(), new ProjectFunc(), new Group(),
+			new GroupProjectFunc(), new Common(), new User(), new GroupUser(), };
 
 	@Override
 	public void createDb() {

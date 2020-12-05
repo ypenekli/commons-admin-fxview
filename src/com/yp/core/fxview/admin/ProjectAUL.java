@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.yp.admin.Constants;
-import com.yp.admin.data.ProjectFuncs;
-import com.yp.admin.data.Projects;
+import com.yp.admin.data.ProjectFunc;
+import com.yp.admin.data.Project;
 import com.yp.admin.model.ProjectFuncModel;
 import com.yp.core.BaseConstants;
 import com.yp.core.entity.IDataEntity;
@@ -30,9 +30,9 @@ import javafx.scene.control.TextField;
 
 public class ProjectAUL extends RootPage {
 	@FXML
-	private TableView<Projects> tProjects;
+	private TableView<Project> tProjects;
 	@FXML
-	private TableView<ProjectFuncs> tSubitems;
+	private TableView<ProjectFunc> tSubitems;
 	@FXML
 	private Label txtId;
 	@FXML
@@ -47,10 +47,10 @@ public class ProjectAUL extends RootPage {
 	private Button btnSave;
 	@FXML
 	private Button btnUp;
-	private ProjectFuncs selectedProjectFuncs;
-	private List<Projects> projectList;
-	private List<ProjectFuncs> subitems;
-	private Deque<ProjectFuncs> projectNode = new LinkedList<>();
+	private ProjectFunc selectedProjectFuncs;
+	private List<Project> projectList;
+	private List<ProjectFunc> subitems;
+	private Deque<ProjectFunc> projectNode = new LinkedList<>();
 
 	public void initialize(final URL location, final ResourceBundle resources) {
 		scmTarget.setItems(FXCollections.observableArrayList(getProjectFuncModel().getTargetList()));
@@ -95,7 +95,7 @@ public class ProjectAUL extends RootPage {
 		refresh(tProjects, projectList, (IDataEntity) null);
 	}
 
-	private void showDialog(final Projects pProject) {
+	private void showDialog(final Project pProject) {
 		AForm form = showModal(this.id, ".ProjectAU", Constants.getString("FrmProjectAUL.Header"), pProject, null,
 				false);
 		if (form.getResult() != null && form.getResult().isSuccess())
@@ -104,7 +104,7 @@ public class ProjectAUL extends RootPage {
 
 	private void updateProject(final ActionEvent arg0) {
 		dataEntity = tProjects.getSelectionModel().getSelectedItem();
-		showDialog((Projects) dataEntity);
+		showDialog((Project) dataEntity);
 	}
 
 	private void buildProjectsTable() {
@@ -116,7 +116,7 @@ public class ProjectAUL extends RootPage {
 		updateMenuItem.setOnAction(this::updateProject);
 
 		tProjects.setRowFactory(tv -> {
-			final TableRow<Projects> row = new TableRow<>();
+			final TableRow<Project> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
 				if (!row.isEmpty() && event.getClickCount() == 2) {
 					updateProject(null);
@@ -147,7 +147,7 @@ public class ProjectAUL extends RootPage {
 		addLeafMenuItem.setOnAction(this::addFunc);
 		updateMenuItem.setOnAction(this::updateFunc);
 		tSubitems.setRowFactory(tv -> {
-			final TableRow<ProjectFuncs> row = new TableRow<>();
+			final TableRow<ProjectFunc> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
 				if (!row.isEmpty() && event.getClickCount() == 2) {
 					sellectProjectFuncs(row.getItem());
@@ -161,12 +161,12 @@ public class ProjectAUL extends RootPage {
 		tSubitems.contextMenuProperty().set(contextMenu);
 	}
 
-	private void sellectProject(final Projects de) {
+	private void sellectProject(final Project de) {
 		if (de != null) {
 			dataEntity = de;
 			projectNode.clear();
 			String projectId = de.getId();
-			selectedProjectFuncs = new ProjectFuncs(projectId);
+			selectedProjectFuncs = new ProjectFunc(projectId);
 			selectedProjectFuncs.setProjectId(projectId);
 			selectedProjectFuncs.setParentId(projectId);
 			selectedProjectFuncs.setName(de.getName());
@@ -176,14 +176,14 @@ public class ProjectAUL extends RootPage {
 		}
 	}
 
-	private void sellectProjectFuncs(final ProjectFuncs de) {
+	private void sellectProjectFuncs(final ProjectFunc de) {
 		projectNode.add(selectedProjectFuncs);
 		selectedProjectFuncs = de;
 	}
 
 	public void save(final ActionEvent arg0) {
 		synchronize(false, null);
-		result = getProjectFuncModel().save(selectedProjectFuncs, ((Projects) dataEntity).getGroupId(), getUser());
+		result = getProjectFuncModel().save(selectedProjectFuncs, ((Project) dataEntity).getGroupId(), getUser());
 		if (result.isSuccess()) {
 			addMessage(BaseConstants.MESSAGE_INFO, result.getMessage());
 			if (selectedProjectFuncs.getLevel() > 1) {
@@ -203,7 +203,7 @@ public class ProjectAUL extends RootPage {
 		if (!BaseConstants.isEmpty(projectList))
 			idx = projectList.size();
 		idx += 1;
-		Projects newProject = new Projects(String.format("0.%s", idx));
+		Project newProject = new Project(String.format("0.%s", idx));
 		newProject.setAutor(getUser().getFullName());
 		showModal(this.id, ".ProjectAU", Constants.getString("FrmProjectAUL.Header"), newProject, null, false);
 	}

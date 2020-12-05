@@ -4,8 +4,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.yp.admin.data.Commons;
-import com.yp.admin.data.Users;
+import com.yp.admin.data.Common;
+import com.yp.admin.data.User;
 import com.yp.admin.model.CommonModel;
 import com.yp.core.BaseConstants;
 import com.yp.core.fxview.AForm;
@@ -61,7 +61,7 @@ public class AddAccount extends AForm {
 	public void initialize(URL pLocation, ResourceBundle pResources) {
 
 		pages = new Tab[] { page1, page2, page3, page4 };
-		List<Commons> dIlListe = new CommonModel().findByParent(Commons.PARENT_ID_CITY_TR);
+		List<Common> dIlListe = new CommonModel().findByParent(Common.PARENT_ID_CITY_TR);
 		if (dIlListe != null)
 			cbHomeCity.setItems(FXCollections.observableArrayList(dIlListe));
 		page.getSelectionModel().clearAndSelect(dIndeks);
@@ -115,7 +115,7 @@ public class AddAccount extends AForm {
 			if (StringTool.isNull(email))
 				dSnc = false;
 			else {
-				Users user = getUserModel().findByEMail(email);
+				User user = getUserModel().findByEMail(email);
 				if (user != null) {
 					account = new Account(user);
 				}
@@ -141,7 +141,7 @@ public class AddAccount extends AForm {
 		result = getUserModel().addAccount(app.getApplicationName(), getAccount(), getUser());
 		message = result.getMessage();
 		if (result.isSuccess()) {
-			Users user = (Users) result.getData();
+			User user = (User) result.getData();
 			app.setUser(user);
 			app.showStartup();
 		}
