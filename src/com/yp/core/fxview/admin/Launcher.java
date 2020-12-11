@@ -7,11 +7,11 @@ import java.util.logging.Logger;
 
 import com.yp.admin.Constants;
 import com.yp.admin.data.Common;
-import com.yp.admin.data.GroupProjectFunc;
+import com.yp.admin.data.GroupAppFunc;
 import com.yp.admin.data.GroupUser;
 import com.yp.admin.data.Group;
-import com.yp.admin.data.ProjectFunc;
-import com.yp.admin.data.Project;
+import com.yp.admin.data.AppFunc;
+import com.yp.admin.data.App;
 import com.yp.admin.data.User;
 import com.yp.admin.model.GroupModel;
 import com.yp.admin.model.UserModel;
@@ -54,8 +54,8 @@ public class Launcher extends ALauncher {
 		return BaseConstants.getString(key);
 	}
 
-	protected final IDataEntity[] commonTables = new DataEntity[] { new Project(), new ProjectFunc(), new Group(),
-			new GroupProjectFunc(), new Common(), new User(), new GroupUser(), };
+	protected final IDataEntity[] commonTables = new DataEntity[] { new App(), new AppFunc(), new Group(),
+			new GroupAppFunc(), new Common(), new User(), new GroupUser(), };
 
 	@Override
 	public void createDb() {

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import com.yp.admin.Constants;
 import com.yp.admin.data.User;
 import com.yp.core.entity.IDataEntity;
+import com.yp.core.fxview.ToolBar;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,14 +17,19 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 
 public class UsersList extends RootPage {
 	@FXML
 	private TableView<User> tUsers;
 	@FXML
 	private TextField txtName;
+	//@FXML
+	//private ToolBar toolBar;
+	//@FXML
+	//private ToolBar toolBarController;
 
-	public void initialize(final URL location, final ResourceBundle resources) {
+	public void initialize(final URL location, final ResourceBundle resources) {			
 		this.buildUsersTable();
 	}
 

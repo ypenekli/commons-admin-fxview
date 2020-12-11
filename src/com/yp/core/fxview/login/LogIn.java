@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 import com.yp.admin.data.Group;
 import com.yp.admin.data.User;
-import com.yp.admin.model.ProjectFuncModel;
+import com.yp.admin.model.AppFuncModel;
 import com.yp.core.BaseConstants;
 import com.yp.core.entity.IResult;
 import com.yp.core.fxview.AForm;
@@ -89,7 +89,7 @@ public class LogIn extends AForm {
 	private void logIn(Group pRoot) {
 		if (app.checkApplicationConfig(pRoot))
 			((User) app.getUser()).setGroupId(pRoot.getId());
-		app.setMenuList(new ProjectFuncModel().findGroupProjectFuncs(pRoot.getId(), pRoot.getProjectId()));
+		app.setMenuList(new AppFuncModel().findGroupAppFuncs(pRoot.getId(), pRoot.getAppId()));
 
 		app.showStartup();
 	}

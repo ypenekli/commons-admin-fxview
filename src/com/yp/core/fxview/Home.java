@@ -10,8 +10,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
-import com.yp.admin.data.ProjectFunc;
-import com.yp.admin.data.Project;
+import com.yp.admin.data.AppFunc;
+import com.yp.admin.data.App;
 import com.yp.core.BaseConstants;
 import com.yp.core.entity.IDataEntity;
 import com.yp.core.tools.StringTool;
@@ -53,7 +53,7 @@ public class Home extends AForm {
 		Home.localConfig = Locale.getDefault().getLanguage();
 	}
 
-	public void createMenu(final List<ProjectFunc> pMenuList) {
+	public void createMenu(final List<AppFunc> pMenuList) {
 		(this.menuBar = new MenuBar()).setId("Home");
 		Menu mProje = new Menu(BaseConstants.getString("FrmHome.1"));
 		this.menuBar.getMenus().add(mProje);
@@ -74,7 +74,7 @@ public class Home extends AForm {
 		mProje.getItems().add(mProje4);
 		if (pMenuList != null) {
 			for (int dI = 0; dI < pMenuList.size(); ++dI) {
-				final ProjectFunc de = pMenuList.get(dI);
+				final AppFunc de = pMenuList.get(dI);
 				if (de.isStatusEnabled() && de.getLevel() == 2) {
 					mProje = new Menu(de.getName());
 					menuBar.getMenus().add(mProje);
@@ -93,7 +93,7 @@ public class Home extends AForm {
 		final MenuItem mProje7 = new MenuItem(BaseConstants.getString("FrmHome.2.Help"));
 		mProje7.setOnAction(event -> {
 			final String url = app.getHelpUrl() + "/yardim.html";
-			dataEntity = new Project();
+			dataEntity = new App();
 			dataEntity.set("url", url);
 			show(Home.this.id, ".Empty", (String) null, dataEntity, (ResourceBundle) null);
 		});
@@ -111,10 +111,10 @@ public class Home extends AForm {
 		this.root.setBottom((Node) this.statusBar);
 	}
 
-	private void fillSubMenu(final List<ProjectFunc> pListe, final Menu pMenu, final String pUstkod,
+	private void fillSubMenu(final List<AppFunc> pListe, final Menu pMenu, final String pUstkod,
 			final int pAltSinir) {
 		for (int dI = pAltSinir; dI < pListe.size(); ++dI) {
-			final ProjectFunc de = pListe.get(dI);
+			final AppFunc de = pListe.get(dI);
 			if (de.isStatusEnabled() && pUstkod.equals(de.getParentId())) {
 				MenuItem mProje;
 				if (!de.isLeaf()) {

@@ -26,40 +26,29 @@
 
 <GridPane fx:id="self" xmlns="http://javafx.com/javafx/8.0.60"
 	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="com.yp.core.fxview.admin.GroupList">
-	<HBox prefWidth="700" GridPane.columnIndex="0"
-		GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
-		<ToolBar HBox.hgrow="ALWAYS">
-			<Button disable="${controller.gosterMeKapat}"
-				onAction="#close" text="%Kapat" />
+	fx:controller="com.yp.core.fxview.admin.GroupList">	
+	<HBox GridPane.rowIndex="1" xmlns:fx="http://javafx.com/fxml/1" prefWidth="700">
+		<ToolBar  HBox.hgrow="ALWAYS">
+			<Button onAction="#hide" text="%Close" disable="${controller.hideClose}" />
 			<Separator />
-			<Button disable="${controller.gosterMeYenile}"
-				onAction="#refresh" text="%Yenile" />
+			<Button onAction="#refresh" text="%Refresh" disable="${controller.hideRefresh}" />
 			<Separator />
-			<Button disable="${controller.gosterMeEkle}" onAction="#add"
-				text="%EkleYeni" />
+			<Button onAction="#add" text="%AddNew" disable="${controller.hideAdd}" />
 			<Separator />
-			<Button disable="${controller.gosterMeKaydet}"
-				onAction="#save" text="${controller.etiketKaydet}" />
+			<Button onAction="#save" text="${controller.labelSave}" disable="${controller.hideSave}" />
 			<Separator />
-			<Button disable="${controller.gosterMeRaporla}"
-				onAction="#report" text="%Raporla" />
+			<Button onAction="#report" text="%Report" disable="${controller.hideReport}" />
 			<Separator />
 			<Pane HBox.hgrow="ALWAYS" />
-			<Label text="${controller.islemack}" textFill="blue" />
+			<Label text="${controller.mode}" textFill="blue" />
 		</ToolBar>
 		<MenuBar>
 			<Menu text="%Islemler">
-				<MenuItem disable="${controller.gosterMeKapat}"
-					onAction="#close" text="%Kapat" />
-				<MenuItem disable="${controller.gosterMeYenile}"
-					onAction="#refresh" text="%Yenile" />
-				<MenuItem disable="${controller.gosterMeEkle}"
-					onAction="#add" text="%EkleYeni" />
-				<MenuItem disable="${controller.gosterMeKaydet}"
-					onAction="#save" text="${controller.etiketKaydet}" />
-				<MenuItem disable="${controller.gosterMeRaporla}"
-					onAction="#report" text="%Raporla" />
+				<MenuItem onAction="#close" text="%Close" disable="${controller.hideClose}" />
+				<MenuItem onAction="#refresh" text="%Refresh" disable="${controller.hideRefresh}" />
+				<MenuItem onAction="#add" text="%AddNew" disable="${controller.hideAdd}" />
+				<MenuItem onAction="#save" text="${controller.labelSave}" disable="${controller.hideSave}" />
+				<MenuItem onAction="#report" text="%Report" disable="${controller.hideReport}" />
 			</Menu>
 			<HBox.margin>
 				<Insets left="0.0" />
@@ -74,7 +63,7 @@
 			<Font name="System Bold" size="18.0" />
 		</font>
 	</Label>
-	<TabPane fx:id="tabGroup" prefWidth="700"
+	<TabPane id="tabGroup" prefWidth="700"
 		GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
 		<Tab fx:id="tab1" closable="false" text="%FrmGroup.Tab1">
 			<HBox alignment="bottom_left" spacing="10">
@@ -90,9 +79,9 @@
 							<PropertyValueFactory property="id" />
 						</cellValueFactory>
 					</TableColumn>
-					<TableColumn minWidth="80" text="%FrmProjectAUL.Id">
+					<TableColumn minWidth="80" text="%FrmAppAUL.Id">
 						<cellValueFactory>
-							<PropertyValueFactory property="projectId" />
+							<PropertyValueFactory property="appId" />
 						</cellValueFactory>
 					</TableColumn>
 					<TableColumn minWidth="350" text="%FrmGroup.Name">
@@ -100,9 +89,9 @@
 							<PropertyValueFactory property="name" />
 						</cellValueFactory>
 					</TableColumn>
-					<TableColumn minWidth="250" text="%FrmProjectAUL.Name">
+					<TableColumn minWidth="250" text="%FrmAppAUL.Name">
 						<cellValueFactory>
-							<PropertyValueFactory property="projectName" />
+							<PropertyValueFactory property="appName" />
 						</cellValueFactory>
 					</TableColumn>
 				</columns>
@@ -117,10 +106,10 @@
 					<AnchorPane minHeight="0.0" minWidth="0.0"
 						prefHeight="160.0" prefWidth="100.0">
 						<children>
-							<Label text="%FrmGroup.Header.ProjectFn" textFill="blue" 
+							<Label text="%FrmGroup.Header.AppFn" textFill="blue" 
 								AnchorPane.leftAnchor="0.0"
 								AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-							<TreeView fx:id="trProjectSubitems"
+							<TreeView fx:id="trAppSubitems"
 								AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
 								AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" onDragDetected="#dragFn" />
 						</children>

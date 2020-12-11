@@ -35,37 +35,37 @@
 	<HBox GridPane.columnIndex="0" GridPane.rowIndex="1"
 		GridPane.hgrow="ALWAYS" prefWidth="700">
 		<ToolBar HBox.hgrow="ALWAYS">
-			<Button onAction="#close" text="%Kapat"
-				disable="${controller.gosterMeKapat}" />
+			<Button onAction="#close" text="%Close"
+				disable="${controller.hideClose}" />
 			<Separator />
-			<Button onAction="#refresh" text="%Yenile"
-				disable="${controller.gosterMeYenile}" />
+			<Button onAction="#refresh" text="%Refresh"
+				disable="${controller.hideRefresh}" />
 			<Separator />
-			<Button onAction="#add" text="%EkleYeni"
-				disable="${controller.gosterMeEkle}" />
+			<Button onAction="#add" text="%AddNew"
+				disable="${controller.hideAdd}" />
 			<Separator />
-			<Button onAction="#save" text="${controller.etiketKaydet}"
-				disable="${controller.gosterMeKaydet}" />
+			<Button onAction="#save" text="${controller.labelSave}"
+				disable="${controller.hideSave}" />
 			<Separator />
-			<Button onAction="#report" text="%Raporla"
-				disable="${controller.gosterMeRaporla}" />
+			<Button onAction="#report" text="%Report"
+				disable="${controller.hideReport}" />
 			<Separator />
 			<Pane HBox.hgrow="ALWAYS" />
-			<Label text="${controller.islemack}" textFill="blue" />
+			<Label text="${controller.mode}" textFill="blue" />
 		</ToolBar>
 		<MenuBar>
 			<Menu text="%Islemler">
-				<MenuItem onAction="#close" text="%Kapat"
-					disable="${controller.gosterMeKapat}" />
-				<MenuItem onAction="#refresh" text="%Yenile"
-					disable="${controller.gosterMeYenile}" />
-				<MenuItem onAction="#add" text="%EkleYeni"
-					disable="${controller.gosterMeEkle}" />
+				<MenuItem onAction="#close" text="%Close"
+					disable="${controller.hideClose}" />
+				<MenuItem onAction="#refresh" text="%Refresh"
+					disable="${controller.hideRefresh}" />
+				<MenuItem onAction="#add" text="%AddNew"
+					disable="${controller.hideAdd}" />
 				<MenuItem onAction="#save"
-					text="${controller.etiketKaydet}"
-					disable="${controller.gosterMeKaydet}" />
-				<MenuItem onAction="#report" text="%Raporla"
-					disable="${controller.gosterMeRaporla}" />
+					text="${controller.labelSave}"
+					disable="${controller.hideSave}" />
+				<MenuItem onAction="#report" text="%Report"
+					disable="${controller.hideReport}" />
 			</Menu>
 			<HBox.margin>
 				<Insets left="0.0" />
@@ -111,7 +111,7 @@
 							text="%FrmAyar.onyGosterParola" style="-fx-font-weight: bold;-fx-text-fill: red;" />
 				
 											
-				<Button onAction="#save" text="%Kaydet" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+				<Button onAction="#save" text="%Save" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             
 			</GridPane>
 		</Tab>

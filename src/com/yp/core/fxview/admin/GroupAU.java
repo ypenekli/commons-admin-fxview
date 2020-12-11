@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.yp.admin.data.Group;
-import com.yp.admin.data.Project;
+import com.yp.admin.data.App;
 import com.yp.core.BaseConstants;
 
 import javafx.collections.FXCollections;
@@ -19,7 +19,7 @@ public class GroupAU extends RootPage {
 	@FXML
 	private Label txtGroupId;
 	@FXML
-	private ComboBox<Project> chProjects;
+	private ComboBox<App> chApps;
 	@FXML
 	private TextField txtGroupName;
 	
@@ -39,23 +39,23 @@ public class GroupAU extends RootPage {
 			if (pToForm) {
 				txtGroupId.setText(group.getId().toString());
 				txtGroupName.setText(group.getName());
-				chProjects.getSelectionModel().select(new Project(group.getProjectId()));
+				chApps.getSelectionModel().select(new App(group.getAppId()));
 			} else {
 				group.setName(txtGroupName.getText());
-				if (chProjects.getSelectionModel().getSelectedIndex() > -1) {
-					group.setProjectId(chProjects.getValue().getId());
+				if (chApps.getSelectionModel().getSelectedIndex() > -1) {
+					group.setAppId(chApps.getValue().getId());
 				}
 			}
-			chProjects.setDisable(!dataEntity.isNew());
+			chApps.setDisable(!dataEntity.isNew());
 		}
 	}
 
 	@Override
 	public void refresh(final ActionEvent arg0) {
-		chProjects.getItems().clear();
-		List<Project> projectList = getProjectModel().findProjects(getUser().getId());
-		if (!BaseConstants.isEmpty(projectList))
-			chProjects.setItems(FXCollections.observableArrayList(projectList));
+		chApps.getItems().clear();
+		List<App> appList = getAppModel().findApps(getUser().getId());
+		if (!BaseConstants.isEmpty(appList))
+			chApps.setItems(FXCollections.observableArrayList(appList));
 	}
 
 	@Override

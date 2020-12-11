@@ -137,8 +137,8 @@ public class CommonsAUL extends RootPage {
 
 	private void buildSubitems2Table() {
 		final ContextMenu contextMenu = new ContextMenu();
-		final MenuItem addParentMenuItem = new MenuItem(BaseConstants.getString("FrmProjectAUL.Add.Parent"));
-		final MenuItem addLeafMenuItem = new MenuItem(BaseConstants.getString("FrmProjectAUL.Add.Leaf"));
+		final MenuItem addParentMenuItem = new MenuItem(BaseConstants.getString("FrmAppAUL.Add.Parent"));
+		final MenuItem addLeafMenuItem = new MenuItem(BaseConstants.getString("FrmAppAUL.Add.Leaf"));
 		final MenuItem updateMenuItem = new MenuItem(BaseConstants.getString("Guncelle"));
 		addParentMenuItem.setOnAction(this::addParent);
 		addLeafMenuItem.setOnAction(this::addLeaf);

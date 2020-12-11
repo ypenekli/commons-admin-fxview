@@ -49,8 +49,8 @@ public class MyConnInfo extends DbConnInfo {
 			dbPassword1 = new SimpleStringProperty(dbPassword) {
 				@Override
 				public void set(String pValue) {
-					dbPassword = pValue;
-					super.set(DbHandler.encrypt(dbPassword));
+					dbPassword = DbHandler.encrypt(pValue);
+					super.set(dbPassword);
 				}
 
 				@Override

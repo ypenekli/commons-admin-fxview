@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 
 import com.yp.admin.data.GroupUser;
 import com.yp.admin.data.Group;
-import com.yp.admin.data.ProjectFunc;
+import com.yp.admin.data.AppFunc;
 import com.yp.admin.data.User;
 import com.yp.core.BaseConstants;
 import com.yp.core.entity.IDataEntity;
@@ -53,7 +53,7 @@ public class GroupList extends RootPage {
 	@FXML
 	private Tab tab3;
 	@FXML
-	private TreeView<ITree<?>> trProjectSubitems;
+	private TreeView<ITree<?>> trAppSubitems;
 	@FXML
 	private TreeView<ITree<?>> trGroupSubitems;		
 	private TreeItem<ITree<?>> selectedTreeItem;
@@ -64,7 +64,7 @@ public class GroupList extends RootPage {
 
 	public void initialize(final URL location, final ResourceBundle resources) {
 		buildGroupsTable();
-		buildProjectsTree();
+		buildAppsTree();
 		buildGroupFnTree();
 		buildUsersTable();
 		buildGroupUsersTable();
@@ -76,7 +76,7 @@ public class GroupList extends RootPage {
 
 	public void synchronize(final boolean pToForm, final Object[] pAdditionalParams) {
 		if (dataEntity != null && pToForm) {
-			findProjectFns();
+			findAppFns();
 			findGroupFns();
 			findGroupUsers();
 			deleteGroupFnMenuItem.setDisable((boolean) ((Group) this.dataEntity).isAdmin());
@@ -89,13 +89,13 @@ public class GroupList extends RootPage {
 		refresh(tGroups, groupList, (IDataEntity) null);
 	}
 
-	private void findProjectFns() {
+	private void findAppFns() {
 		final Group group = (Group) dataEntity;
 		if (group != null) {
-			List<ProjectFunc> projectTree = getProjectFuncModel().findUserProjectFuncs(getUser().getId(), group.getProjectId());
-			if (projectTree != null) {
-				trProjectSubitems.setRoot(TreeModel.buildTreeNode(projectTree, 0));
-				trProjectSubitems.getRoot().setExpanded(true);
+			List<AppFunc> appTree = getAppFuncModel().findUserAppFuncs(getUser().getId(), group.getAppId());
+			if (appTree != null) {
+				trAppSubitems.setRoot(TreeModel.buildTreeNode(appTree, 0));
+				trAppSubitems.getRoot().setExpanded(true);
 			}
 		}
 	}
@@ -103,7 +103,7 @@ public class GroupList extends RootPage {
 	private void findGroupFns() {
 		final Group group = (Group) dataEntity;
 		if (group != null) {
-			List<ProjectFunc> groupTree = getProjectFuncModel().findGroupProjectFuncs(group.getId(), group.getProjectId());
+			List<AppFunc> groupTree = getAppFuncModel().findGroupAppFuncs(group.getId(), group.getAppId());
 			if (groupTree != null) {
 				trGroupSubitems.setRoot(TreeModel.buildTreeNode(groupTree, 0));
 				trGroupSubitems.getRoot().setExpanded(true);
@@ -137,19 +137,19 @@ public class GroupList extends RootPage {
 		});
 	}
 
-	private void buildProjectsTree() {
+	private void buildAppsTree() {
 		final ContextMenu contextMenu = new ContextMenu();
 		final MenuItem ekleMenuItem = new MenuItem(BaseConstants.getString("FrmGroup.Add.Islev"));
 		ekleMenuItem.setOnAction(this::addFnToGroup);
 		contextMenu.getItems().addAll(ekleMenuItem);
-		trProjectSubitems.contextMenuProperty().set(contextMenu);
-		trProjectSubitems.getSelectionModel().selectedIndexProperty().addListener((sec, si1, si2) -> {
-			selectedTreeItem = trProjectSubitems.getSelectionModel().getSelectedItem();
+		trAppSubitems.contextMenuProperty().set(contextMenu);
+		trAppSubitems.getSelectionModel().selectedIndexProperty().addListener((sec, si1, si2) -> {
+			selectedTreeItem = trAppSubitems.getSelectionModel().getSelectedItem();
 			if (selectedTreeItem != null) {
 				selectedItem = selectedTreeItem.getValue();
 			}
 		});
-		trProjectSubitems.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		trAppSubitems.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 	}
 
 	private void buildGroupFnTree() {
@@ -187,8 +187,8 @@ public class GroupList extends RootPage {
 	}
 
 	public void dragFn(final MouseEvent event) {
-		final Dragboard db = this.trProjectSubitems.startDragAndDrop(TransferMode.ANY);
-		selectedTreeItem = trProjectSubitems.getSelectionModel().getSelectedItem();
+		final Dragboard db = this.trAppSubitems.startDragAndDrop(TransferMode.ANY);
+		selectedTreeItem = trAppSubitems.getSelectionModel().getSelectedItem();
 		final ClipboardContent content = new ClipboardContent();
 		content.putString((String) selectedTreeItem.getValue().getValue());
 		db.setContent(content);
@@ -245,7 +245,7 @@ public class GroupList extends RootPage {
 	}
 
 	private void addFnToGroup(final ActionEvent arg0) {
-		selectedTreeItem = trProjectSubitems.getSelectionModel().getSelectedItem();
+		selectedTreeItem = trAppSubitems.getSelectionModel().getSelectedItem();
 		if (selectedTreeItem != null && this.selectedTreeItem.getParent() != null) {
 			selectedItem = selectedTreeItem.getValue();
 			final String[] adds = getSellection(selectedTreeItem, true);
@@ -292,7 +292,7 @@ public class GroupList extends RootPage {
 	}
 
 	public void dragUser(final MouseEvent event) {
-		final Dragboard db = this.trProjectSubitems.startDragAndDrop(TransferMode.ANY);
+		final Dragboard db = this.trAppSubitems.startDragAndDrop(TransferMode.ANY);
 		selectedUser = tUsers.getSelectionModel().getSelectedItem();
 		final ClipboardContent content = new ClipboardContent();
 		content.putString(selectedUser.getEmail());

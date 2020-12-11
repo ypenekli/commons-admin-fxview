@@ -137,7 +137,7 @@
 			<Label  	GridPane.columnIndex="3" GridPane.rowIndex="7" text="${controller.account.address}" />
 
 			
-			<Button 	GridPane.columnIndex="0" GridPane.rowIndex="10" GridPane.columnSpan="2" GridPane.halignment="right"   defaultButton="true" onAction="#save" text="%Kaydet"  />
+			<Button 	GridPane.columnIndex="0" GridPane.rowIndex="10" GridPane.columnSpan="2" GridPane.halignment="right"   defaultButton="true" onAction="#save" text="%Save"  />
 		
 			</GridPane>
 		</Tab>
@@ -146,5 +146,5 @@
 		
 	<Button 	GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.halignment="right"  fx:id="btnBackward"  onAction="#geri" text="%Geri"  />			
 	<Button 	GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.halignment="left" defaultButton="true" fx:id="btnForward" onAction="#ileri" text="%Ileri" />	
-	<Button 	GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.halignment="left" fx:id="bClose" onAction="#close" text="%Kapat" visible="false" />
+	<Button 	GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.halignment="left" fx:id="bClose" onAction="#close" text="%Close" visible="false" />
 </GridPane>

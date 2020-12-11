@@ -23,28 +23,29 @@
 <?import javafx.scene.text.Font?>
 
 <GridPane fx:id="self" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yp.core.fxview.admin.CommonsAUL">
-	<HBox prefWidth="700" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
-		<ToolBar HBox.hgrow="ALWAYS">
-			<Button disable="${controller.gosterMeKapat}" onAction="#close" text="%Kapat" />
+	<Pane GridPane.rowIndex="1" GridPane.columnIndex="0"  GridPane.hgrow="ALWAYS">	
+	<HBox GridPane.rowIndex="1" xmlns:fx="http://javafx.com/fxml/1" prefWidth="700">
+		<ToolBar  HBox.hgrow="ALWAYS">
+			<Button onAction="#hide" text="%Close" disable="${controller.hideClose}" />
 			<Separator />
-			<Button disable="${controller.gosterMeYenile}" onAction="#refresh" text="%Yenile" />
+			<Button onAction="#refresh" text="%Refresh" disable="${controller.hideRefresh}" />
 			<Separator />
-			<Button disable="${controller.gosterMeEkle}" onAction="#add" text="%EkleYeni" />
+			<Button onAction="#add" text="%AddNew" disable="${controller.hideAdd}" />
 			<Separator />
-			<Button disable="${controller.gosterMeKaydet}" onAction="#save" text="${controller.etiketKaydet}" />
+			<Button onAction="#save" text="${controller.labelSave}" disable="${controller.hideSave}" />
 			<Separator />
-			<Button disable="${controller.gosterMeRaporla}" onAction="#report" text="%Raporla" />
+			<Button onAction="#report" text="%Report" disable="${controller.hideReport}" />
 			<Separator />
 			<Pane HBox.hgrow="ALWAYS" />
-			<Label text="${controller.islemack}" textFill="blue" />
+			<Label text="${controller.mode}" textFill="blue" />
 		</ToolBar>
 		<MenuBar>
 			<Menu text="%Islemler">
-				<MenuItem disable="${controller.gosterMeKapat}" onAction="#close" text="%Kapat" />
-				<MenuItem disable="${controller.gosterMeYenile}" onAction="#refresh" text="%Yenile" />
-				<MenuItem disable="${controller.gosterMeEkle}" onAction="#add" text="%EkleYeni" />
-				<MenuItem disable="${controller.gosterMeKaydet}" onAction="#save" text="${controller.etiketKaydet}" />
-				<MenuItem disable="${controller.gosterMeRaporla}" onAction="#report" text="%Raporla" />
+				<MenuItem onAction="#close" text="%Close" disable="${controller.hideClose}" />
+				<MenuItem onAction="#refresh" text="%Refresh" disable="${controller.hideRefresh}" />
+				<MenuItem onAction="#add" text="%AddNew" disable="${controller.hideAdd}" />
+				<MenuItem onAction="#save" text="${controller.labelSave}" disable="${controller.hideSave}" />
+				<MenuItem onAction="#report" text="%Report" disable="${controller.hideReport}" />
 			</Menu>
 			<HBox.margin>
 				<Insets left="0.0" />
@@ -54,6 +55,7 @@
 			</padding>
 		</MenuBar>
 	</HBox>
+	</Pane>
 	<Label text="%FrmSharedRefAUL.Header" GridPane.rowIndex="2">
 		<font>
 			<Font name="System Bold" size="18.0" />
@@ -112,11 +114,11 @@
 					<TextField fx:id="txtDef" prefWidth="100" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                  
                  
-	                <Button 	GridPane.columnIndex="0" GridPane.rowIndex="7"  GridPane.halignment="right"  fx:id="btnSave" defaultButton="true" onAction="#save" text="%Kaydet"  />
+	                <Button 	GridPane.columnIndex="0" GridPane.rowIndex="7"  GridPane.halignment="right"  fx:id="btnSave" defaultButton="true" onAction="#save" text="%Save"  />
 	                <HBox GridPane.columnIndex="3" GridPane.rowIndex="7" spacing="10">
-						<Button fx:id="btnAddParent" onAction="#addParent"  text="%FrmProjectAUL.Add.Parent" />
-						<Button fx:id="btnAddLeaf" onAction="#addLeaf" text="%FrmProjectAUL.Add.Leaf" /> 
-						<Button fx:id="btnParent" onAction="#goUp" text="%FrmProjectAUL.GoUp" /> 
+						<Button fx:id="btnAddParent" onAction="#addParent"  text="%FrmAppAUL.Add.Parent" />
+						<Button fx:id="btnAddLeaf" onAction="#addLeaf" text="%FrmAppAUL.Add.Leaf" /> 
+						<Button fx:id="btnParent" onAction="#goUp" text="%FrmAppAUL.GoUp" /> 
 				    </HBox>           
 	               <TableView fx:id="tSubitems2" Style="-fx-border-width: 1;"  GridPane.rowIndex="8" GridPane.columnSpan="4">
 					<columns>
@@ -125,17 +127,17 @@
 							<PropertyValueFactory property="islvkod" />
 						</cellValueFactory>
 					</TableColumn>
-					<TableColumn  text="%FrmProjectAUL.FnName" minWidth="150">
+					<TableColumn  text="%FrmAppAUL.FnName" minWidth="150">
 						<cellValueFactory>
 							<PropertyValueFactory property="name" />
 						</cellValueFactory>
 					</TableColumn>
-					<TableColumn  text="%FrmProjectAUL.Url">
+					<TableColumn  text="%FrmAppAUL.Url">
 						<cellValueFactory>
 							<PropertyValueFactory property="url" />
 						</cellValueFactory>
 					</TableColumn>
-					<TableColumn  text="%FrmProjectAUL.Target">
+					<TableColumn  text="%FrmAppAUL.Target">
 						<cellValueFactory>
 							<PropertyValueFactory property="target" />
 						</cellValueFactory>
@@ -152,6 +154,5 @@
                
             </children></AnchorPane>
      </items>
-   </SplitPane>
-   
+   </SplitPane>   
 </GridPane>

@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 
 import com.yp.admin.data.Group;
-import com.yp.admin.data.ProjectFunc;
+import com.yp.admin.data.AppFunc;
 import com.yp.core.BaseConstants;
 import com.yp.core.entity.IDataEntity;
 import com.yp.core.entity.IResult;
@@ -56,7 +56,7 @@ public abstract class ALauncher extends Application {
 
 	protected IUser user;
 	protected List<Group> rootMenuList;
-	protected List<ProjectFunc> menuList;
+	protected List<AppFunc> menuList;
 	protected List<IDataEntity> dataList;
 
 	protected Map<String, Pane> Forms;
@@ -288,7 +288,7 @@ public abstract class ALauncher extends Application {
 		return getStringConstant("Application.Home.File.Name");
 	}
 
-	public List<ProjectFunc> getMenuList() {
+	public List<AppFunc> getMenuList() {
 		return menuList;
 	}
 
@@ -296,7 +296,7 @@ public abstract class ALauncher extends Application {
 		return rootMenuList;
 	}
 
-	public void setMenuList(final List<ProjectFunc> pMenuList) {
+	public void setMenuList(final List<AppFunc> pMenuList) {
 		menuList = pMenuList;
 		Pane dP = (Pane) getPrimaryStage().getScene().getRoot();
 		dP.getChildren().clear();

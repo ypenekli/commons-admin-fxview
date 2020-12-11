@@ -1,17 +1,20 @@
 package com.yp.core.fxview.admin;
 
+import java.io.IOException;
 import java.util.List;
 
+import com.yp.Root;
 import com.yp.admin.Constants;
 import com.yp.admin.data.Common;
 import com.yp.admin.model.CommonModel;
-import com.yp.admin.model.ProjectFuncModel;
-import com.yp.admin.model.ProjectModel;
+import com.yp.admin.model.AppFuncModel;
+import com.yp.admin.model.AppModel;
 import com.yp.admin.model.ExportModel;
 import com.yp.core.fxview.AForm;
 
 import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
+import javafx.fxml.FXMLLoader;
 
 public abstract class RootPage extends AForm {
 	protected static final String ADD_NEW;
@@ -20,8 +23,8 @@ public abstract class RootPage extends AForm {
 	protected static final String LISTING;
 	protected static final String REPORT = "rpr.do";
 	private CommonModel commonModel;
-	private ProjectModel projectModel;
-	private ProjectFuncModel projectFuncModel;
+	private AppModel appModel;
+	private AppFuncModel appFuncModel;
 	private ExportModel exportModel;
 	protected List<Common> cityList;
 	protected List<Common> districtList;
@@ -40,18 +43,18 @@ public abstract class RootPage extends AForm {
 		return commonModel;
 	}
 
-	public ProjectModel getProjectModel() {
-		if (projectModel == null) {
-			projectModel = new ProjectModel();
+	public AppModel getAppModel() {
+		if (appModel == null) {
+			appModel = new AppModel();
 		}
-		return projectModel;
+		return appModel;
 	}
 
-	public ProjectFuncModel getProjectFuncModel() {
-		if (projectFuncModel == null) {
-			projectFuncModel = new ProjectFuncModel();
+	public AppFuncModel getAppFuncModel() {
+		if (appFuncModel == null) {
+			appFuncModel = new AppFuncModel();
 		}
-		return projectFuncModel;
+		return appFuncModel;
 	}
 
 	public ExportModel getExportModel() {
@@ -99,5 +102,14 @@ public abstract class RootPage extends AForm {
 		app.getHome().progressBar.setVisible(true);
 		app.getHome().progressBar.progressProperty().unbind();
 		app.getHome().progressBar.progressProperty().bind(progres.progressProperty());
+	}
+	
+	public class ToolBar{
+		public ToolBar() throws IOException {
+	        FXMLLoader loader = new FXMLLoader(Root.class.getResource("core/fxview/ToolBar.fxml"));
+	        loader.setRoot(this);
+	        loader.setController(this);
+	        loader.load();
+	    }
 	}
 }

@@ -71,13 +71,13 @@ public abstract class AForm implements Initializable {
 	private GroupModel groupModel;
 	private Date date;
 	private Calendar c;
-	private Property<String> dIslemack;
-	private BooleanProperty dGosterMeKapat;
-	private BooleanProperty dGosterMeRefresh;
-	private BooleanProperty dGosterMeEkle;
-	private BooleanProperty dGosterMeKaydet;
-	private BooleanProperty dGosterMeRaporla;
-	private StringProperty dEtiketKaydet;
+	private Property<String> mode;
+	private BooleanProperty hideClose;
+	private BooleanProperty hideRefresh;
+	private BooleanProperty hideAdd;
+	private BooleanProperty hideSave;
+	private BooleanProperty hideReport;
+	private StringProperty labelSave;
 	protected OnFindAllCompletedListener<?> onFindAllCompletedListener;
 	protected OnFindOneCompletedListener<?> onFindOneCompletedListener;
 	protected OnSaveCompletedListener<?> onSaveCompletedListener;
@@ -87,13 +87,13 @@ public abstract class AForm implements Initializable {
 	}
 
 	public AForm() {
-		this.dIslemack = new SimpleStringProperty();
-		this.dGosterMeKapat = new SimpleBooleanProperty();
-		this.dGosterMeRefresh = new SimpleBooleanProperty();
-		this.dGosterMeEkle = new SimpleBooleanProperty();
-		this.dGosterMeKaydet = new SimpleBooleanProperty();
-		this.dGosterMeRaporla = new SimpleBooleanProperty();
-		this.dEtiketKaydet = new SimpleStringProperty(BaseConstants.getString("Kaydet"));
+		this.mode = new SimpleStringProperty();
+		this.hideClose = new SimpleBooleanProperty();
+		this.hideRefresh = new SimpleBooleanProperty();
+		this.hideAdd = new SimpleBooleanProperty();
+		this.hideSave = new SimpleBooleanProperty();
+		this.hideReport = new SimpleBooleanProperty();
+		this.labelSave = new SimpleStringProperty(BaseConstants.getString("Save"));
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -469,92 +469,92 @@ public abstract class AForm implements Initializable {
 	public void setDataEntity(IDataEntity pDataEntity) {
 		dataEntity = pDataEntity;
 		if (dataEntity != null) {
-			setIslemack(dataEntity.isNew() ? BaseConstants.NEW : BaseConstants.UPDATE);
+			setMode(dataEntity.isNew() ? BaseConstants.NEW : BaseConstants.UPDATE);
 		}
 	}
 
-	public Property<String> islemackProperty() {
-		return dIslemack;
+	public Property<String> modeProperty() {
+		return mode;
 	}
 
-	public String getIslemack() {
-		return dIslemack.getValue();
+	public String getMode() {
+		return mode.getValue();
 	}
 
-	public void setIslemack(String pIslemack) {
-		dIslemack.setValue(pIslemack);
+	public void setMode(String pMode) {
+		mode.setValue(pMode);
 	}
 
-	public BooleanProperty gosterMeKapatProperty() {
-		return dGosterMeKapat;
+	public BooleanProperty hideCloseProperty() {
+		return hideClose;
 	}
 
-	public BooleanProperty gosterMeRefreshProperty() {
-		return dGosterMeRefresh;
+	public BooleanProperty hideRefreshProperty() {
+		return hideRefresh;
 	}
 
-	public BooleanProperty gosterMeEkleProperty() {
-		return dGosterMeEkle;
+	public BooleanProperty hideAddProperty() {
+		return hideAdd;
 	}
 
-	public BooleanProperty gosterMeKaydetProperty() {
-		return dGosterMeKaydet;
+	public BooleanProperty hideSaveProperty() {
+		return hideSave;
 	}
 
-	public BooleanProperty gosterMeRaporlaProperty() {
-		return dGosterMeRaporla;
+	public BooleanProperty hideReportProperty() {
+		return hideReport;
 	}
 
-	public Boolean getGosterMeKapat() {
-		return dGosterMeKapat.getValue();
+	public Boolean getHideClose() {
+		return hideClose.getValue();
 	}
 
-	public void setGosterMeKapat(Boolean pGosterMe) {
-		dGosterMeKapat.setValue(pGosterMe);
+	public void setHideClose(Boolean pGosterMe) {
+		hideClose.setValue(pGosterMe);
 	}
 
-	public Boolean getGosterMerefresh() {
-		return dGosterMeRefresh.getValue();
+	public Boolean getHideRefresh() {
+		return hideRefresh.getValue();
 	}
 
-	public void setGosterMerefresh(Boolean pGosterMe) {
-		dGosterMeRefresh.setValue(pGosterMe);
+	public void setHideRefresh(Boolean pGosterMe) {
+		hideRefresh.setValue(pGosterMe);
 	}
 
-	public Boolean getGosterMeEkle() {
-		return dGosterMeEkle.getValue();
+	public Boolean getHideAdd() {
+		return hideAdd.getValue();
 	}
 
-	public void setGosterMeEkle(Boolean pGosterMe) {
-		dGosterMeEkle.setValue(pGosterMe);
+	public void setHideAdd(Boolean pGosterMe) {
+		hideAdd.setValue(pGosterMe);
 	}
 
-	public Boolean getGosterMeKaydet() {
-		return dGosterMeKaydet.getValue();
+	public Boolean getHideSave() {
+		return hideSave.getValue();
 	}
 
-	public void setGosterMeKaydet(Boolean pGosterMe) {
-		dGosterMeKaydet.setValue(pGosterMe);
+	public void setHideSave(Boolean pGosterMe) {
+		hideSave.setValue(pGosterMe);
 	}
 
-	public Boolean getGosterMeRaporla() {
-		return dGosterMeRaporla.getValue();
+	public Boolean getHideReport() {
+		return hideReport.getValue();
 	}
 
-	public void setGosterMeRaporla(Boolean pGosterMe) {
-		dGosterMeRaporla.setValue(pGosterMe);
+	public void setHideReport(Boolean pHide) {
+		hideReport.setValue(pHide);
 	}
 
-	public StringProperty etiketKaydetProperty() {
-		return dEtiketKaydet;
+	public StringProperty labelSaveProperty() {
+		return labelSave;
 	}
 
-	public String getEtiketKaydet() {
-		return dEtiketKaydet.getValue();
+	public String getLabelSave() {
+		return labelSave.getValue();
 	}
 
-	public void setEtiketKaydet(String pEtiket) {
-		dEtiketKaydet.setValue(pEtiket);
+	public void setLabelSave(String pEtiket) {
+		labelSave.setValue(pEtiket);
 	}
 
 	@FXML

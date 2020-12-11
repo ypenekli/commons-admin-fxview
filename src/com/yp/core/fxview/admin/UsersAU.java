@@ -146,6 +146,9 @@ public class UsersAU extends RootPage {
 				if (cbTitle.getSelectionModel().getSelectedIndex() > -1) {
 					user.setTitle(cbTitle.getValue().getId());
 				}
+				if(user.isNew()) {
+					user.setPassword("11111.0");
+				}
 			}
 		}
 

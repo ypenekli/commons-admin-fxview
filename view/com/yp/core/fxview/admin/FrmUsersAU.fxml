@@ -25,41 +25,29 @@
 
 <GridPane fx:id="self" xmlns="http://javafx.com/javafx/8.0.60"
 	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="com.yp.core.fxview.admin.UsersAU">
-	<HBox GridPane.columnIndex="0" GridPane.rowIndex="1"
-		GridPane.hgrow="ALWAYS" prefWidth="700">
+	fx:controller="com.yp.core.fxview.admin.UsersAU">	
+	<HBox GridPane.rowIndex="1" xmlns:fx="http://javafx.com/fxml/1" prefWidth="700">
 		<ToolBar  HBox.hgrow="ALWAYS">
-			<Button onAction="#hide" text="%Kapat"
-				disable="${controller.gosterMeKapat}" />
+			<Button onAction="#hide" text="%Close" disable="${controller.hideClose}" />
 			<Separator />
-			<Button onAction="#refresh" text="%Yenile"
-				disable="${controller.gosterMeYenile}" />
+			<Button onAction="#refresh" text="%Refresh" disable="${controller.hideRefresh}" />
 			<Separator />
-			<Button onAction="#add" text="%EkleYeni"
-				disable="${controller.gosterMeEkle}" />
+			<Button onAction="#add" text="%AddNew" disable="${controller.hideAdd}" />
 			<Separator />
-			<Button onAction="#save" text="${controller.etiketKaydet}"
-				disable="${controller.gosterMeKaydet}" />
+			<Button onAction="#save" text="${controller.labelSave}" disable="${controller.hideSave}" />
 			<Separator />
-			<Button onAction="#report" text="%Raporla"
-				disable="${controller.gosterMeRaporla}" />
+			<Button onAction="#report" text="%Report" disable="${controller.hideReport}" />
 			<Separator />
 			<Pane HBox.hgrow="ALWAYS" />
-			<Label text="${controller.islemack}" textFill="blue" />
+			<Label text="${controller.mode}" textFill="blue" />
 		</ToolBar>
 		<MenuBar>
 			<Menu text="%Islemler">
-				<MenuItem onAction="#close" text="%Kapat"
-					disable="${controller.gosterMeKapat}" />
-				<MenuItem onAction="#refresh" text="%Yenile"
-					disable="${controller.gosterMeYenile}" />
-				<MenuItem onAction="#add" text="%EkleYeni"
-					disable="${controller.gosterMeEkle}" />
-				<MenuItem onAction="#save"
-					text="${controller.etiketKaydet}"
-					disable="${controller.gosterMeKaydet}" />
-				<MenuItem onAction="#report" text="%Raporla"
-					disable="${controller.gosterMeRaporla}" />
+				<MenuItem onAction="#close" text="%Close" disable="${controller.hideClose}" />
+				<MenuItem onAction="#refresh" text="%Refresh" disable="${controller.hideRefresh}" />
+				<MenuItem onAction="#add" text="%AddNew" disable="${controller.hideAdd}" />
+				<MenuItem onAction="#save" text="${controller.labelSave}" disable="${controller.hideSave}" />
+				<MenuItem onAction="#report" text="%Report" disable="${controller.hideReport}" />
 			</Menu>
 			<HBox.margin>
 				<Insets left="0.0" />
@@ -148,9 +136,9 @@
 		
 		
 		<Label 		GridPane.columnIndex="1" GridPane.rowIndex="14" GridPane.columnSpan="4" text="%Zorunlu" style="-fx-text-fill: red;" />
-		<Button 	GridPane.columnIndex="0" GridPane.rowIndex="15" GridPane.columnSpan="3" GridPane.halignment="right"  fx:id="btnSave" defaultButton="true" onAction="#save" text="%Kaydet"  />
-		<Button 	GridPane.columnIndex="3" GridPane.rowIndex="15" onAction="#add" text="%EkleYeni" />
-		<Button 	GridPane.columnIndex="7" GridPane.rowIndex="15" GridPane.halignment="right"  fx:id="btnCancel" onAction="#close" text="%Kapat" />
+		<Button 	GridPane.columnIndex="0" GridPane.rowIndex="15" GridPane.columnSpan="3" GridPane.halignment="right"  fx:id="btnSave" defaultButton="true" onAction="#save" text="%Save"  />
+		<Button 	GridPane.columnIndex="3" GridPane.rowIndex="15" onAction="#add" text="%AddNew" />
+		<Button 	GridPane.columnIndex="7" GridPane.rowIndex="15" GridPane.halignment="right"  fx:id="btnCancel" onAction="#close" text="%Close" />
 		
 	   	<padding>
 			<Insets bottom="5" left="5" right="2" top="2" />
