@@ -94,7 +94,8 @@ public class GroupList extends RootPage {
 		if (group != null) {
 			List<AppFunc> appTree = getAppFuncModel().findUserAppFuncs(getUser().getId(), group.getAppId());
 			if (appTree != null) {
-				trAppSubitems.setRoot(TreeModel.buildTreeNode(appTree, 0));
+				TreeItem<ITree<?>> root = TreeModel.buildTreeNode(appTree, 0);
+				trAppSubitems.setRoot(root);
 				trAppSubitems.getRoot().setExpanded(true);
 			}
 		}

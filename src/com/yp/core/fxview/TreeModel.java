@@ -35,13 +35,15 @@ public class TreeModel {
 	}
 
 	public static TreeItem<ITree<?>> getTreeViewItem(final TreeItem<ITree<?>> item, final ITree<?> value) {
-		if (item != null && item.getValue().equals(value)) {
-			return item;
-		}
-		for (final TreeItem<ITree<?>> child : item.getChildren()) {
-			final TreeItem<ITree<?>> s = getTreeViewItem(child, value);
-			if (s != null) {
-				return s;
+		if (item != null) {
+			if (item.getValue().equals(value)) {
+				return item;
+			}
+			for (final TreeItem<ITree<?>> child : item.getChildren()) {
+				final TreeItem<ITree<?>> s = getTreeViewItem(child, value);
+				if (s != null) {
+					return s;
+				}
 			}
 		}
 		return null;
