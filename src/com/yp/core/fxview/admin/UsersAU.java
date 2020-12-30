@@ -70,10 +70,14 @@ public class UsersAU extends RootPage {
 
 	public void initialize(URL location, ResourceBundle resources) {
 		fillRefrences();
-		cbHomeCity.setItems(FXCollections.observableArrayList(cityList));
-		cbPosition.setItems(FXCollections.observableArrayList(positionList));
-		cbProfession.setItems(FXCollections.observableArrayList(professionList));
-		cbTitle.setItems(FXCollections.observableArrayList(titleList));
+		if (!BaseConstants.isEmpty(cityList))
+			cbHomeCity.setItems(FXCollections.observableArrayList(cityList));
+		if (!BaseConstants.isEmpty(positionList))
+			cbPosition.setItems(FXCollections.observableArrayList(positionList));
+		if (!BaseConstants.isEmpty(professionList))
+			cbProfession.setItems(FXCollections.observableArrayList(professionList));
+		if (!BaseConstants.isEmpty(titleList))
+			cbTitle.setItems(FXCollections.observableArrayList(titleList));
 	}
 
 	public String getHelpFileName() {
@@ -146,7 +150,7 @@ public class UsersAU extends RootPage {
 				if (cbTitle.getSelectionModel().getSelectedIndex() > -1) {
 					user.setTitle(cbTitle.getValue().getId());
 				}
-				if(user.isNew()) {
+				if (user.isNew()) {
 					user.setPassword("11111.0");
 				}
 			}
