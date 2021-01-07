@@ -37,7 +37,7 @@ public class Launcher extends ALauncher {
 
 	@Override
 	protected List<Group> findRootMenuList(IUser pUser) {
-		return new GroupModel().findGroupList(pUser.getId(), getApplicationId());
+		return new GroupModel().findAppGroupList(pUser.getId(), getApplicationId());
 	}
 
 	public String getFormUrl(String key) {

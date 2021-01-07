@@ -99,14 +99,14 @@
 		<Label 		GridPane.columnIndex="2" GridPane.rowIndex="8" text="%Ikinokta" />
 		<ComboBox   GridPane.columnIndex="3" GridPane.rowIndex="8" fx:id="cbPosition" maxWidth="200" promptText="%FrmKisiGDL.Secgorev"/>
 		
-		<Label 		GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.halignment="right" text="%FrmKisiGDL.Baslamatrh"  style="-fx-font-weight: bold;"/>
+		<Label 		GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.halignment="right" text="%FrmUsersAU.Enroll.Date"  style="-fx-font-weight: bold;"/>
 		<Label 		GridPane.columnIndex="1" GridPane.rowIndex="9" text="*" style="-fx-font-weight: bold;-fx-text-fill: red;"/>
 		<Label 		GridPane.columnIndex="2" GridPane.rowIndex="9" text="%Ikinokta" />
 		<DatePicker GridPane.columnIndex="3" GridPane.rowIndex="9" fx:id="txtCheckinDate" maxWidth="150" />
 		
 		<CheckBox  	GridPane.columnIndex="3" GridPane.rowIndex="10" fx:id="onyDurumu" text="%FrmKisiGDL.Durumu"  style="-fx-text-fill: red; -fx-font-size: 16;" />
 		
-		<Label   	GridPane.columnIndex="0" GridPane.rowIndex="11" GridPane.halignment="right" text="%FrmKisiGDL.Ayrilistrh"  style="-fx-font-weight: bold;"/>
+		<Label   	GridPane.columnIndex="0" GridPane.rowIndex="11" GridPane.halignment="right" text="%FrmUsersAU.Leave.Date"  style="-fx-font-weight: bold;"/>
 		<Label 		GridPane.columnIndex="1" GridPane.rowIndex="11" text="*" style="-fx-font-weight: bold;-fx-text-fill: red;"/>
 		<Label  	GridPane.columnIndex="2" GridPane.rowIndex="11" text="%Ikinokta" />
 		<DatePicker GridPane.columnIndex="3" GridPane.rowIndex="11" fx:id="txtCheckoutDate" maxWidth="150" />

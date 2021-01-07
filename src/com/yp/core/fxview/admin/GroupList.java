@@ -85,7 +85,7 @@ public class GroupList extends RootPage {
 
 	@Override
 	public void refresh(final ActionEvent arg0) {
-		List<Group> groupList = getGroupModel().findGroupList(getUser().getId());
+		List<Group> groupList = getGroupModel().findUserGroupList(getUser().getId());
 		refresh(tGroups, groupList, (IDataEntity) null);
 	}
 
